@@ -1,0 +1,30 @@
+#bottomtopping{
+    background-color: palevioletred;
+    height: 20%;
+}
+
+#toptopping{
+    background-color: lightcoral;
+    height: 20%;
+}
+
+#maingame{
+    background-color: palegreen;
+    height: 40%;
+}
+
+#bottom{
+    background-color: palegoldenrod;
+    height: 15%;
+}
+
+#top{
+    background-color: blueviolet;
+    height: 15%;
+}
+
+#background{
+    width: 95vw;
+    height: 45vw;
+    background-color: rosybrown;
+}
