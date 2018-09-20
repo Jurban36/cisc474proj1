@@ -1,24 +1,24 @@
-<script>
-    function component(width, height, color, x, y) {
-            this.width = width;
-        this.height = height;
-        this.speedX = 0;
-        this.x = x;
-        this.y = y;
-        this.update = function() {
-            ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
-        this.newPos = function() {
-            this.x += this.speedX;
-        this.y += this.speedY;
-        }
+var pizzaGame = function () {
+    console.log("here")
+    var self = this;
+    this.options = {
+        currentPizzaPosition: -($(window).width() * .1),
+        pizzaState: 0,
+        pizzaSpeed: 1
+    }
+    this.initialize = function(){
+        self.reset;
+    }
+    this.reset = function(){
+        self.currentPizzaPosition = 0;
+
+    }
+    this.incrementPizza = function () {
+        var self = this;
     }
 
-    function updateGameArea() {
-        myGameArea.clear();
-        myGamePiece.newPos();
-        myGamePiece.update();
+    this.update = function (time) {
+
     }
-</script>
+    this.initialize();
+}
