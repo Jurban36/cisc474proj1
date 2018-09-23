@@ -1,7 +1,7 @@
 var pizzaGame = function () {
     var self = this;
     this.options = {
-        currentPizzaPosition: $('#maingame').width(), //This is where the pizza is
+        currentPizzaPosition: -$('#maingame').width()*.03, //This is where the pizza is
         currentScoreIncrement: 100,
         pizzaState: 0,
         pizzaSpeed: 1,
@@ -12,7 +12,7 @@ var pizzaGame = function () {
     }
     this.reset = function(){
         self.currentPizzaPosition = 0;
-        self.totalScore=-100;
+        self.totalScore=0;
         self.currentScoreIncrement=100;
     }
     this.incrementPizza = function () {
