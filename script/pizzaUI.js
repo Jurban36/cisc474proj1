@@ -1,5 +1,6 @@
 var pizzaUI = function(){
-    console.log("here")
+    console.log("here"
+)
     var self = this;
     this.game = undefined;
     let width = $('#background').width;
@@ -8,6 +9,7 @@ var pizzaUI = function(){
     // console.log(clientHeight)
     this.initialize=function(){
         game = new pizzaGame();
+        game.reset();
     };
     this.refreshView=function(){
     }
@@ -17,6 +19,9 @@ var pizzaUI = function(){
         */
         if ($('#maingame').width()  < game.options.currentPizzaPosition*11) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .01);
+            game.completedPizza(game);
+            console.log(game.totalScore);
+            document.getElementById('Score').innerHTML = "Score: "+game.totalScore;
         }
         else {
             game.options.currentPizzaPosition+=1;
