@@ -4,6 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+    integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+    crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="style/pizza.css" type="text/css">
     <script type="text/javascript" src="script/pizzaUI.js"></script>
     <script type="text/javascript" src="script/pizza.js"></script>
@@ -15,11 +19,21 @@
     </script>
     <div id="background">
         <div id="top">This is above the conveyor belt</div>
-        <div id="toptopping">This is where the top toppings will be</div>
+        <div id="toptopping">This is where the top toppings will be
+            <div id="topping">
+            
+            </div>
+        </div>
         <div id="maingame"> <div id="pizza"></div> </div>
         <div id="bottomtopping">This is where the bottom toppings will be</div>
         <div id="bottom">This is below the conveyor belt</div>
     </div>
+    <script>
+        $( function() {
+         $( "#topping" ).draggable();
+         $( "#pizza" ).droppable();
+       } );
+    </script>
 </body>
 
 </html>
