@@ -1,14 +1,23 @@
 #pizza{
-    position: absolute;
+    position: relative;
     background: brown;
-    width: 70px;
-    height: 70px;
-    top: 285px;
-    left: -500px;
+    width: 7%;
+    height: 30%;
+    top: 35%;
+    left: -10%;
 }
+
 #bottomtopping{
     background-color: palevioletred;
     height: 20%;
+}
+
+#scoreboard{
+    background-color: white;
+    position: absolute;
+    height: 28%;
+    width: 20%;
+    left: 70%;
 }
 
 #toptopping{
@@ -19,6 +28,8 @@
 #maingame{
     background-color: palegreen;
     height: 40%;
+    overflow: hidden;
+    /* margin-left: 0; */
 }
 
 #bottom{
