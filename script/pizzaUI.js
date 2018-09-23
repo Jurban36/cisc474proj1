@@ -1,8 +1,9 @@
 var pizzaUI = function(){
+    console.log("here")
     var self = this;
     this.game = undefined;
     let width = $('#background').width;
-    console.log($('#maingame').width()  )
+    console.log($('#maingame').width()  );
     // var clientHeight = document.getElementById('myDiv').clientHeight;
     // console.log(clientHeight)
     this.initialize=function(){
