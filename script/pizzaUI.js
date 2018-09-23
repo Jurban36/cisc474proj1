@@ -1,33 +1,46 @@
 var pizzaUI = function(){
-    console.log("here"
-)
+
+    console.log("here");
+
     var self = this;
     this.game = undefined;
-    let width = $('#background').width;
-    console.log($('#maingame').width()  );
-    // var clientHeight = document.getElementById('myDiv').clientHeight;
-    // console.log(clientHeight)
     this.initialize=function(){
         game = new pizzaGame();
         game.reset();
+
     };
     this.refreshView=function(){
+        $('#pizza')
     }
+    
     this.update = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if ($('#maingame').width()  < game.options.currentPizzaPosition*11) {
+        if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .03);
             game.completedPizza(game);
             console.log(game.totalScore);
             document.getElementById('Score').innerHTML = "Score: "+game.totalScore;
+
         }
         else {
             game.options.currentPizzaPosition+=1;
         }
-        $('#pizza').css("left",game.options.currentPizzaPosition+'%');
+        var x = $('#topping').position();
+        //console.log(x, game.options.currentPizzaPosition);
+        var right = game.options.currentPizzaPosition+70;
+        $('#pizza').css("left",game.options.currentPizzaPosition+'px');
+        if(window.flag == 1){
+            $('#topping').css("left",game.options.currentPizzaPosition+'px');
+        } 
+        
+        if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
+            console.log("kjf");
+            window.flag = 1;
+        }
     }
-    setInterval(update, 70);
+    setInterval(update, 10);
     this.initialize();
+    
 }
