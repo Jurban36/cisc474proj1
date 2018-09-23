@@ -6,10 +6,20 @@
     top: 285px;
     left: -500px;
     z-index: 2;
+
 }
+
 #bottomtopping{
     background-color: palevioletred;
     height: 20%;
+}
+
+#scoreboard{
+    background-color: white;
+    position: absolute;
+    height: 28%;
+    width: 20%;
+    left: 70%;
 }
 
 #toptopping{
@@ -27,6 +37,8 @@
 #maingame{
     background-color: palegreen;
     height: 40%;
+    overflow: hidden;
+    /* margin-left: 0; */
 }
 
 #bottom{
