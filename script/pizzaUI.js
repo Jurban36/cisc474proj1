@@ -1,17 +1,28 @@
 var pizzaUI = function(){
+
+    console.log("here");
+
     var self = this;
     this.game = undefined;
     this.initialize=function(){
         game = new pizzaGame();
-        console.log(game);
+        game.reset();
+
     };
     this.refreshView=function(){
         $('#pizza')
     }
     
     this.update = function(){
-        if ($(window).width() + ($(window).width() * .1) < game.options.currentPizzaPosition) {
-            game.options.currentPizzaPosition=-($(window).width() * .1);
+        /*
+        This handles incrementing the pizza across the conveyor belt.
+        */
+        if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
+            game.options.currentPizzaPosition=-($('#maingame').width()* .03);
+            game.completedPizza(game);
+            console.log(game.totalScore);
+            document.getElementById('Score').innerHTML = "Score: "+game.totalScore;
+
         }
         else {
             game.options.currentPizzaPosition+=1;

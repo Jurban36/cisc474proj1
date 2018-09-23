@@ -1,11 +1,12 @@
 #pizza{
     position: absolute;
     background: brown;
-    width: 70px;
-    height: 70px;
-    top: 285px;
-    left: -500px;
+    width: 200px;
+    height: 200px;
+    top: 180px;
+    left: -700px;
     z-index: 2;
+
 
 }
 
@@ -17,8 +18,8 @@
 #scoreboard{
     background-color: white;
     position: absolute;
-    height: 28%;
-    width: 20%;
+    height: 25%;
+    width: 25%;
     left: 70%;
 }
 
