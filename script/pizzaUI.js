@@ -18,7 +18,7 @@ var pizzaUI = function(){
         This handles incrementing the pizza across the conveyor belt.
         */
         if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
-            game.options.currentPizzaPosition=-($('#maingame').width()* .03);
+            game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game);
             console.log(game.totalScore);
             document.getElementById('Score').innerHTML = "Score: "+game.totalScore;
@@ -28,7 +28,7 @@ var pizzaUI = function(){
             game.options.currentPizzaPosition+=1;
         }
         var x = $('#topping').position();
-        //console.log(x, game.options.currentPizzaPosition);
+        console.log(x, game.options.currentPizzaPosition);
         var right = game.options.currentPizzaPosition+70;
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
         if(window.flag == 1){
@@ -42,5 +42,4 @@ var pizzaUI = function(){
     }
     setInterval(update, 10);
     this.initialize();
-    
 }

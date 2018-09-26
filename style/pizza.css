@@ -1,9 +1,9 @@
 #pizza{
-    position: absolute;
+    position: relative;
     background: brown;
-    width: 25%;
-    height: 35%;
-    top: 59.5%;
+    width: 22%;
+    height: 100%;
+    top: 0%;
     left: -700px;
     z-index: 2;
 }
