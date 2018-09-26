@@ -13,17 +13,41 @@ var pizzaUI = function(){
     this.refreshView=function(){
         $('#pizza')
     }
+    $('.toppingdiv').click(x => {
+        console.log(x);
+        console.log(x.delegateTarget);
 
-    $( function() {
-        $( "#topping" ).draggable({
+        console.log('topping clicked');
+        var newtop = document.createElement('div');
+        
+        newtop.setAttribute('class', 'topping');
+        newtop.setAttribute('id', 'mushroom');
+        $('#mushroom').position({
+            my: "center",
+            at: "center",
+            of: x.delegateTarget
+        });
+         $(x.delegateTarget).append(newtop);
+         $( "#mushroom" ).draggable({
             stop: function(event, ui) {
+                console.log(event, ui);
                 console.log("dropped");
-                var toppingLoc = $("#topping").position().left;
+                var toppingLoc = $("#mushroom").position().left;
                 toppingOffset = toppingLoc - game.options.currentPizzaPosition;
             }
         });
         $( "#pizza" ).droppable();
-      } );
+    });
+    // $(function() {
+    //     $( "#topping" ).draggable({
+    //         stop: function(event, ui) {
+    //             console.log("dropped");
+    //             var toppingLoc = $("#topping").position().left;
+    //             toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+    //         }
+    //     });
+    //     $( "#pizza" ).droppable();
+    //   });
     
     this.update = function(){
         /*
@@ -33,18 +57,23 @@ var pizzaUI = function(){
             game.options.currentPizzaPosition=-($('#maingame').width()* .03);
             game.completedPizza(game);
             console.log(game.totalScore);
-            document.getElementById('Score').innerHTML = "Score: "+game.totalScore;
+            $('#Score').text("Score: "+game.totalScore);
 
         }
         else {
             game.options.currentPizzaPosition+=1;
         }
-        var x = $('#topping').position();
+
+        $('#pizza').css("left",game.options.currentPizzaPosition+'px');
+
+        //this if checks if topping has been created
+        if($("#mushroom").length){ 
+        var x = $('#mushroom').position();
         //console.log(x, game.options.currentPizzaPosition);
         var right = game.options.currentPizzaPosition+70;
-        $('#pizza').css("left",game.options.currentPizzaPosition+'px');
+        
         if(window.flag == 1){
-            $('#topping').css("left",game.options.currentPizzaPosition + toppingOffset +'px');
+            $('#mushroom').css("left",game.options.currentPizzaPosition + toppingOffset +'px');
         } 
         
         if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
@@ -52,6 +81,7 @@ var pizzaUI = function(){
             window.flag = 1;
         }
     }
+}
     setInterval(update, 10);
     this.initialize();
     
