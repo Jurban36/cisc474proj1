@@ -1,7 +1,7 @@
 var pizzaGame = function () {
     var self = this;
     this.options = {
-        currentPizzaPosition: -$('#maingame').width()*.03, //This is where the pizza is
+        currentPizzaPosition: -$('#maingame').width()*.28, //This is where the pizza is
         currentScoreIncrement: 100,
         pizzaState: 0,
         pizzaSpeed: 1,
@@ -21,5 +21,8 @@ var pizzaGame = function () {
     this.completedPizza = function(pizzaGame){
         pizzaGame.totalScore =pizzaGame.totalScore+self.currentScoreIncrement;
         pizzaGame.currentScoreIncrement=pizzaGame.currentScoreIncrement+10;
+    }
+    this.randomizeDesiredElements = function(){
+        
     }
 }
