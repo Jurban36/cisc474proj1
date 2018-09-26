@@ -3,6 +3,7 @@ var pizzaUI = function(){
     console.log("here");
 
     var self = this;
+    var toppingOffset = 0;
     this.game = undefined;
     this.initialize=function(){
         game = new pizzaGame();
@@ -12,6 +13,17 @@ var pizzaUI = function(){
     this.refreshView=function(){
         $('#pizza')
     }
+
+    $( function() {
+        $( "#topping" ).draggable({
+            stop: function(event, ui) {
+                console.log("dropped");
+                var toppingLoc = $("#topping").position().left;
+                toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+            }
+        });
+        $( "#pizza" ).droppable();
+      } );
     
     this.update = function(){
         /*
@@ -32,7 +44,7 @@ var pizzaUI = function(){
         var right = game.options.currentPizzaPosition+70;
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
         if(window.flag == 1){
-            $('#topping').css("left",game.options.currentPizzaPosition+'px');
+            $('#topping').css("left",game.options.currentPizzaPosition + toppingOffset +'px');
         } 
         
         if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
