@@ -76,7 +76,7 @@ var pizzaUI = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
+        if ($('#maingame').width()  < game.options.currentPizzaPosition) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game); //Update this for when we have toppings to allow for losing.
             this.setScoreBoard(); //Added everything for setting the score to a single function.
@@ -102,6 +102,6 @@ var pizzaUI = function(){
         }
     }
 }
-    setInterval(update, 10);
+    setInterval(update, 2);
     this.initialize();
 }
