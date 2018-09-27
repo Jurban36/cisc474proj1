@@ -102,6 +102,6 @@ var pizzaUI = function(){
         }
     }
 }
-    setInterval(update, 2);
+    setInterval(update, 10);
     this.initialize();
 }
