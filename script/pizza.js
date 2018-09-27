@@ -60,7 +60,6 @@ var pizzaGame = function () {
             }
             counter +=1;
             if (counter>10){
-                console.log("here3");
                 toppingNumber = amountOfToppings;
             }
         }
