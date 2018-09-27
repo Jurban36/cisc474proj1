@@ -15,10 +15,11 @@
 }
 
 #scoreboard{
+    position: relative;
     background-color: white;
-    position: absolute;
-    height: 25%;
+    height: 70%;
     width: 25%;
+    top: 0%;
     left: 70%;
 }
 
