@@ -35,9 +35,11 @@ var pizzaGame = function () {
         var amountLeft = amountOfToppings;
         var toppingNumber = 0;
         let i = 0;
+        let counter = 0;
         pizzaGame.currentToppings = [];
         pizzaGame.currentToppings.length = pizzaGame.toppingList.length;
         while (toppingNumber<amountOfToppings){
+            console.log("here2")
             //This selects the next round of toppings and the breakdown for said toppings.
             var chosenToppings = Math.floor(Math.random() * pizzaGame.toppingQuantity)
             if (!pizzaGame.currentToppings.includes(pizzaGame.toppingList[chosenToppings])){
@@ -55,6 +57,11 @@ var pizzaGame = function () {
                     i++;
                 }
                 toppingNumber +=quantityOfTopping;
+            }
+            counter +=1;
+            if (counter>10){
+                console.log("here3");
+                toppingNumber = amountOfToppings;
             }
         }
         console.log(pizzaGame.currentToppings)

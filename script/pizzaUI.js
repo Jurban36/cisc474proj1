@@ -80,6 +80,7 @@ var pizzaUI = function(){
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game); //Update this for when we have toppings to allow for losing.
             this.setScoreBoard(); //Added everything for setting the score to a single function.
+            console.log("here1")
         }
         else {
             game.options.currentPizzaPosition+=1;
@@ -102,6 +103,6 @@ var pizzaUI = function(){
         }
     }
 }
-    setInterval(update, 10);
+    setInterval(update, 2);
     this.initialize();
 }
