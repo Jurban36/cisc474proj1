@@ -1,7 +1,4 @@
 var pizzaUI = function(){
-
-    console.log("here");
-
     var self = this;
     var toppingOffset = 0;
     this.game = undefined;
