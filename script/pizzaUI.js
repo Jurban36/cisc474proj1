@@ -7,7 +7,7 @@ var pizzaUI = function(){
     this.initialize=function(){
         game = new pizzaGame();
         game.reset();
-
+        this.setScoreBoard();
     };
     this.refreshView=function(){
         $('#pizza')
@@ -106,11 +106,11 @@ var pizzaUI = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
+        if ($('#maingame').width()  < game.options.currentPizzaPosition) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game);
             $('#Score').text("Score: "+game.totalScore);
-
+            this.setScoreBoard();
         }
         else {
             game.options.currentPizzaPosition+=1;
