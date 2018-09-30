@@ -4,18 +4,18 @@ var pizzaUI = function(){
     this.game = undefined;
     window.dragflag = 0;
     window.addedToppings = [];
+    var speed = 10;
     this.initialize=function(){
         game = new pizzaGame();
         game.reset();
         this.setScoreBoard();
+        this.speed = 10;
     };
     this.refreshView=function(){
         $('#pizza')
     }
-
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
-        console.log('mousedown');
         window.dragflag = 1;
         window.newtop = new topping(x.currentTarget.getAttribute('value'));
         window.addedToppings.push(window.newtop);
@@ -57,14 +57,58 @@ var pizzaUI = function(){
         var t = "#"+topping.id;
         $( t ).draggable({
             stop: function(event, ui) {
-                console.log("dropped");
                 var toppingLoc = $(t).position().left;
                 toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+                self.testingTopping = toppingLoc - game.options.currentPizzaPosition;
                 topping.toppingOff = toppingOffset;
             }
         });
         $( "#pizza" ).droppable();
       }
+
+    this.checkForComplete = function(){
+        if (window.addedToppings.length == 0){
+            console.log("u didnt even try");
+            return;
+        }
+        let currentTopping = "";
+        let toppings = [];
+        let currentQuantities = []
+        counter = 0;
+        let flag = true;
+        for (i in window.addedToppings){
+            currentTopping = window.addedToppings[i].id;
+            if (!game.currentToppings.includes(currentTopping)){
+                console.log("u suck")
+                return;
+            }
+            else if (toppings.includes(currentTopping)){
+                let integer = toppings.indexOf(currentTopping);
+                currentQuanities[integer] = currentQuanities[integer]+1;
+            }
+            else{
+                currentQuantities[counter]=1;
+                toppings[counter]=currentTopping;
+                counter+=1;
+            }
+        }
+        for (i in toppings.length){
+            currentTopping = toppings[i];
+            let integer = game.currentToppings.indexOf(currentTopping);
+            if (!game.toppingAmount[integer]==currentQuantities[integer]){
+                console.log("u suck but like two");
+                return
+            }
+        }
+        console.log("ur doing great sweetie");
+        game.completedPizza(game);
+
+        this.speed -= 1;
+        setInterval(update, this.speed);
+
+        // console.log(window.addedToppings);
+        // console.log(toppings);
+    }
 
       this.setScoreBoard = function(){
         /*
@@ -105,6 +149,7 @@ var pizzaUI = function(){
         This handles incrementing the pizza across the conveyor belt.
         */
         if ($('#maingame').width()  < game.options.currentPizzaPosition) {
+            this.checkForComplete();
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game);
             for( i in window.addedToppings){
@@ -124,27 +169,28 @@ var pizzaUI = function(){
         
         
 
-            //checks if mushroom has been created
-            if(window.addedToppings.length){ 
+        //checks if mushroom has been created
+        if(window.addedToppings.length){ 
 
-                //this iterates through toppings and adjusts their positions;
-                for( i in window.addedToppings){
-                var x = $("#"+window.addedToppings[i].id).position();
-                var right = game.options.currentPizzaPosition+80;
-                if(window.flag == 1){
-                    console.log(window.newtop.toppingOff);
-                    $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
-                }
-                
-                //checks if topping is on pizza, logic might be a little off
-                if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
-                    console.log("kjf");
-                    window.flag = 1;
-                }
-            } 
+            //this iterates through toppings and adjusts their positions;
+            for( i in window.addedToppings){
+            var x = $("#"+window.addedToppings[i].id).position();
+            var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
+            if(window.flag == 1){
+                // $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
+                // console.log(window.newtop.toppingOff)
+                $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition+window.newtop.toppingOff+'px');
+            }
+            
+            //checks if topping is on pizza, logic might be a little off
+            if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
+                // console.log("kjf");
+                window.flag = 1;
+            }
+        } 
     }
         
 }
-    setInterval(update, 10);
     this.initialize();
+    setInterval(update, this.speed);
 }
