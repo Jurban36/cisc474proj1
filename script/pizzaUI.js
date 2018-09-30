@@ -29,7 +29,7 @@ var pizzaUI = function(){
     //contain is just a div thats wrapped around the conveyor belt & topping divs
     $( "#contain" ).mousemove(function( event ) {
         if(window.dragflag==1){
-        dragtop(window.newtop.html);
+        //dragtop(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
         }
     });
@@ -55,7 +55,6 @@ var pizzaUI = function(){
     // but the stop condition isn't firing for some reason
     function dragtop(topping) {
         var t = "#"+topping.id;
-    //console.log(t);
         $( t ).draggable({
             stop: function(event, ui) {
                 console.log("dropped");
@@ -65,7 +64,6 @@ var pizzaUI = function(){
             }
         });
         $( "#pizza" ).droppable();
-        
       }
 
       this.setScoreBoard = function(){
@@ -109,6 +107,11 @@ var pizzaUI = function(){
         if ($('#maingame').width()  < game.options.currentPizzaPosition) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
             game.completedPizza(game);
+            for( i in window.addedToppings){
+                window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
+            }
+            window.addedToppings.length = 0;
+            
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
@@ -129,6 +132,7 @@ var pizzaUI = function(){
                 var x = $("#"+window.addedToppings[i].id).position();
                 var right = game.options.currentPizzaPosition+80;
                 if(window.flag == 1){
+                    console.log(window.newtop.toppingOff);
                     $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
                 }
                 
