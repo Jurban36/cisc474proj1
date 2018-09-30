@@ -1,7 +1,49 @@
+#sauce{
+    background-image: url("../images/sauce.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#cheese{
+    background-image: url("../images/cheese.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#mushroom{
+    background-image: url("../images/mushroom.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#tomatoes{
+
+}
+
+#basil{
+    background-image: url("../images/basil.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#pepperoni{
+    background-image: url("../images/pepperoni.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #pizza{
     position: relative;
-    background: brown;
-    width: 22%;
+    background-image: url("../images/pizza.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 25%;
     height: 100%;
     top: 0%;
     left: -700px;
@@ -46,7 +88,10 @@
 }
 
 #maingame{
-    background-color: grey;
+    background-image: url("../images/startspeed2.gif");
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
     height: 40%;
     overflow: hidden;
     /* margin-left: 0; */
@@ -60,7 +105,7 @@
 #background{
     width: 95vw;
     height: 45vw;
-    background-image: url("https://cdn1.vectorstock.com/i/1000x1000/66/85/cartoon-kitchen-counter-with-appliances-vector-20596685.jpg");
+    background-image: url("../images/background.jpg");
     background-position: 0 -50px;
     background-size: contain;
 }
