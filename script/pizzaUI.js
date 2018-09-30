@@ -36,6 +36,19 @@ var pizzaUI = function(){
 
     //this checks if user has stopped holding the topping
     $( "#contain" ).mouseup(function( event ) {
+        console.log(event);
+        var x = event.pageX;
+        var y = event.pageY;
+        toppingOffset = x - game.options.currentPizzaPosition;
+        window.newtop.toppingOff = toppingOffset;
+        var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
+        if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
+            // console.log("kjf");
+            window.flag = 1;
+        }
+
+
+
         if(window.dragflag==1){
             window.dragflag=0;
         }
@@ -46,6 +59,7 @@ var pizzaUI = function(){
     function topping(id) {
         this.id = id;
         this.toppingOff = 0;
+        this.dragflag = 1;
         this.html = document.createElement('div');
         this.html.setAttribute('class', 'topping');
         this.html.setAttribute('id', id);
@@ -183,10 +197,6 @@ var pizzaUI = function(){
             }
             
             //checks if topping is on pizza, logic might be a little off
-            if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
-                // console.log("kjf");
-                window.flag = 1;
-            }
         } 
     }
         
