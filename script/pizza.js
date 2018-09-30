@@ -25,6 +25,9 @@ var pizzaGame = function () {
     this.incrementPizza = function () {
         var self = this;
     }
+    this.failedPizza = function(pizzaGame){
+        pizzaGame.currentScoreIncrement=100;
+    }
     this.completedPizza = function(pizzaGame){
         pizzaGame.totalScore =pizzaGame.totalScore+self.currentScoreIncrement;
         pizzaGame.currentScoreIncrement=pizzaGame.currentScoreIncrement+10;
@@ -67,7 +70,5 @@ var pizzaGame = function () {
                 toppingNumber = amountOfToppings;
             }
         }
-        // console.log(pizzaGame.currentToppings)
-        // console.log(pizzaGame.toppingAmount)
     }
 }
