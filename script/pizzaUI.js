@@ -5,40 +5,73 @@ var pizzaUI = function(){
     var self = this;
     var toppingOffset = 0;
     this.game = undefined;
+    window.dragflag = 0;
+    window.addedToppings = [];
     this.initialize=function(){
         game = new pizzaGame();
         game.reset();
-        this.setScoreBoard();
+
     };
     this.refreshView=function(){
         $('#pizza')
     }
-    $('.toppingdiv').click(x => {
-        console.log(x);
-        console.log(x.delegateTarget);
 
-        console.log('topping clicked');
-        var newtop = document.createElement('div');
-        
-        newtop.setAttribute('class', 'topping');
-        newtop.setAttribute('id', 'mushroom');
-        $('#mushroom').position({
-            my: "center",
-            at: "center",
-            of: x.delegateTarget
-        });
-         $(x.delegateTarget).append(newtop);
-         $( "#mushroom" ).draggable({
+    //this function generates the topping divs then a toppingdiv gets clicked
+    $('.toppingdiv').mousedown(x => {
+        console.log('mousedown');
+        window.dragflag = 1;
+        window.newtop = new topping(x.currentTarget.getAttribute('value'));
+        window.addedToppings.push(window.newtop);
+        console.log(window.newtop);
+        dragtop(window.newtop.html);
+        $(x.currentTarget).append(window.newtop.html);
+        $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+    });
+
+    //this function makes the topping follow the mouse when holding the topping
+    //contain is just a div thats wrapped around the conveyor belt & topping divs
+    $( "#contain" ).mousemove(function( event ) {
+        if(window.dragflag==1){
+        dragtop(window.newtop.html);
+        $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+        }
+    });
+
+    //this checks if user has stopped holding the topping
+    $( "#contain" ).mouseup(function( event ) {
+        if(window.dragflag==1){
+            window.dragflag=0;
+        }
+    });
+
+    //constructor for toppings, takes string id parameter 
+    //toppingOff is the toppings offset from the pizza
+    function topping(id) {
+        this.id = id;
+        this.toppingOff = 0;
+        this.html = document.createElement('div');
+        this.html.setAttribute('class', 'topping');
+        this.html.setAttribute('id', id);
+      }
+    
+    // enables toppings to be draggable, supposed to calculate topping offset,
+    // but the stop condition isn't firing for some reason
+    function dragtop(topping) {
+        var t = "#"+topping.id;
+    //console.log(t);
+        $( t ).draggable({
             stop: function(event, ui) {
-                console.log(event, ui);
                 console.log("dropped");
-                var toppingLoc = $("#mushroom").position().left;
+                var toppingLoc = $(t).position().left;
                 toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+                topping.toppingOff = toppingOffset;
             }
         });
         $( "#pizza" ).droppable();
-    });
-    this.setScoreBoard = function(){
+        
+      }
+
+      this.setScoreBoard = function(){
         /*
         This handles creating a functional scoreboard that generates random combinations of the available 
         toppings as well as keeps track of the score for the player to see.
@@ -71,38 +104,46 @@ var pizzaUI = function(){
         $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
         $('#Score').text("Score: "+game.totalScore);
     }
-
+    
     this.update = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if ($('#maingame').width()  < game.options.currentPizzaPosition) {
+        if ($('#maingame').width()  < game.options.currentPizzaPosition*1.25) {
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
-            game.completedPizza(game); //Update this for when we have toppings to allow for losing.
-            this.setScoreBoard(); //Added everything for setting the score to a single function.
-            console.log("here1")
+            game.completedPizza(game);
+            $('#Score').text("Score: "+game.totalScore);
+
         }
         else {
             game.options.currentPizzaPosition+=1;
         }
+
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
 
-        //this if checks if topping has been created
-        if($("#mushroom").length){ 
-        var x = $('#mushroom').position();
-        //console.log(x, game.options.currentPizzaPosition);
-        var right = game.options.currentPizzaPosition+70;
         
-        if(window.flag == 1){
-            $('#mushroom').css("left",game.options.currentPizzaPosition + toppingOffset +'px');
-        } 
         
-        if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
-            console.log("kjf");
-            window.flag = 1;
-        }
+
+            //checks if mushroom has been created
+            if(window.addedToppings.length){ 
+
+                //this iterates through toppings and adjusts their positions;
+                for( i in window.addedToppings){
+                var x = $("#"+window.addedToppings[i].id).position();
+                var right = game.options.currentPizzaPosition+80;
+                if(window.flag == 1){
+                    $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
+                }
+                
+                //checks if topping is on pizza, logic might be a little off
+                if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
+                    console.log("kjf");
+                    window.flag = 1;
+                }
+            } 
     }
+        
 }
-    setInterval(update, 2);
+    setInterval(update, 10);
     this.initialize();
 }
