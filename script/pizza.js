@@ -17,8 +17,9 @@ var pizzaGame = function () {
         self.totalScore=0;
         self.currentScoreIncrement=100;
         self.toppingQuantity = 3;
-        self.toppingList = ["Pepperoni", "Tomatoes","Mushrooms"];
+        self.toppingList = ["Pepperoni", "Basil","Mushroom"];
         self.currentToppings = []; //This is the current toppings we want to be put on the list.
+        self.toppingAmount = [];
         self.chosenQuantity=0; //This is the total amount of toppings we want.
     }
     this.incrementPizza = function () {
@@ -36,10 +37,11 @@ var pizzaGame = function () {
         var toppingNumber = 0;
         let i = 0;
         let counter = 0;
+        let counter2 = 0;
         pizzaGame.currentToppings = [];
         pizzaGame.currentToppings.length = pizzaGame.toppingList.length;
+        pizzaGame.toppingAmount = [];
         while (toppingNumber<amountOfToppings){
-            console.log("here2")
             //This selects the next round of toppings and the breakdown for said toppings.
             var chosenToppings = Math.floor(Math.random() * pizzaGame.toppingQuantity)
             if (!pizzaGame.currentToppings.includes(pizzaGame.toppingList[chosenToppings])){
@@ -50,6 +52,8 @@ var pizzaGame = function () {
                     //This will select a random amount of toppings that will eventually get the quantity
                     //of toppings to the amount needed to fill out the list
                     quantityOfTopping = Math.floor(Math.random() * amountOfToppings)+1;//picks an amount of said topping
+                pizzaGame.toppingAmount[counter2] = quantityOfTopping;
+                counter2=counter2+1;
                 for (var j = 0;j<quantityOfTopping; j++){
                     //This adds the topping selected to the current topping list
                     //It adds the quantity of said topping to currentToppings.
@@ -63,6 +67,7 @@ var pizzaGame = function () {
                 toppingNumber = amountOfToppings;
             }
         }
-        console.log(pizzaGame.currentToppings)
+        // console.log(pizzaGame.currentToppings)
+        // console.log(pizzaGame.toppingAmount)
     }
 }
