@@ -43,6 +43,7 @@
     height: 20px;
     width: 20px;
     z-index: 3;
+    overflow: hidden;
 }
 
 #maingame{
