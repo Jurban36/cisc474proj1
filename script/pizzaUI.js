@@ -193,7 +193,7 @@ var pizzaUI = function(){
             if(window.flag == 1){
                 // $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
                 // console.log(window.newtop.toppingOff)
-                $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition+window.newtop.toppingOff+'px');
+                $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition+window.addedToppings[i].toppingOff+'px');
             }
             
             //checks if topping is on pizza, logic might be a little off
