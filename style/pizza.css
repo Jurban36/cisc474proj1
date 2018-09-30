@@ -50,7 +50,15 @@
     z-index: 2;
 }
 
-.toppingholder{
+.toppingbarlip{
+    height: 5%;
+    overflow: hidden;
+    background-color: brown;
+    z-index: 1;
+    width: 100%;
+}
+
+.toppingbar{
     /* background-color: palevioletred; */
     height: 20%;
     overflow: hidden;
