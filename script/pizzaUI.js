@@ -6,7 +6,6 @@ var pizzaUI = function(){
     window.addedToppings = [];
     var speed = 10;
     var toppingIDs = 0;
-    // console.log("jasdhjkasjd")
     let myVar ;
     this.initialize=function(){
         game = new pizzaGame();
@@ -21,9 +20,7 @@ var pizzaUI = function(){
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
         window.newtop = new topping(x.currentTarget.getAttribute('value'));
-        console.log("erer")
         window.addedToppings.push(window.newtop);
-        console.log(window.newtop);
         dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
@@ -51,7 +48,6 @@ var pizzaUI = function(){
         // this.id = toppingIDs;
         // this.currentTopping = id;
         this.id = toppingIDs;
-        console.log(this.id)
         this.currentTopping = id;
         toppingIDs+=1;
         this.toppingOff = 0;
@@ -74,11 +70,12 @@ var pizzaUI = function(){
             }
         });
         $( "#pizza" ).droppable();
-        
       }
     this.setSpeed = function(){
+        console.log(this.speed);
         myVar= clearInterval(myVar);
         myVar = setInterval(update, this.speed);
+        console.log(this.speed);
     }
 
     this.checkForComplete = function(){
@@ -96,7 +93,6 @@ var pizzaUI = function(){
         counter = 0;
         for (i in window.addedToppings){
             currentTopping = window.addedToppings[i].currentTopping;
-            console.log(currentTopping)
             if (!game.currentToppings.includes(currentTopping)){
                 console.log("u suck")
                 this.speed = 10;
@@ -114,12 +110,12 @@ var pizzaUI = function(){
                 counter+=1;
             }
         }
-        for (i in toppings.length){
+        for (var j = 0; j<toppings.length;j++){
             currentTopping = toppings[i];
             let integer = game.currentToppings.indexOf(currentTopping);
-            if (!game.toppingAmount[integer]==currentQuantities[integer]){
+            if (game.toppingAmount[integer]!=currentQuantities[integer]){
                 console.log("u suck but like two");
-                this.speed = 10;
+                this.speed =10;
                 setSpeed();
                 flag = false;
                 return;
@@ -128,12 +124,9 @@ var pizzaUI = function(){
         console.log("ur doing great sweetie");
         game.completedPizza(game);
         if (flag==true){
-            console.log("here")
              this.speed -= 1;
              setSpeed();
         }
-        // console.log(window.addedToppings);
-        // console.log(toppings);
     }
 
       this.setScoreBoard = function(){
@@ -177,6 +170,12 @@ var pizzaUI = function(){
         if ($('#maingame').width()  < game.options.currentPizzaPosition) {
             this.checkForComplete();
             game.options.currentPizzaPosition=-($('#maingame').width()* .28);
+            game.completedPizza(game);
+            for( i in window.addedToppings){
+                window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
+            }
+            window.addedToppings.length = 0;
+            
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
@@ -194,17 +193,14 @@ var pizzaUI = function(){
 
             //this iterates through toppings and adjusts their positions;
             for( i in window.addedToppings){
-                // console.log(window.addedToppings[i].id);
                 var x = $("#"+window.addedToppings[i].id).position();//over Here Jurb
                 var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
                 if(window.flag == 1){
                     // $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
-                    // console.log(window.newtop.toppingOff)
                     $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition+window.newtop.toppingOff+'px');
                 }
                 //checks if topping is on pizza, logic might be a little off
                 if(x.left > game.options.currentPizzaPosition && x.left<right && (x.top > $('#pizza').position().top)){
-                    // console.log("kjf");
                     window.flag = 1;
                 }
             }    
