@@ -21,7 +21,7 @@ var pizzaUI = function(){
         window.newtop = new topping(x.currentTarget.getAttribute('value'));
         window.addedToppings.push(window.newtop);
         console.log(window.newtop);
-        dragtop(window.newtop.html);
+        //dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
     });
@@ -39,6 +39,11 @@ var pizzaUI = function(){
     $( "#contain" ).mouseup(function( event ) {
         if(window.dragflag==1){
             window.dragflag=0;
+            var t = "#"+window.newtop.id;
+            console.log("dropped");
+            var toppingLoc = $(t).position().left;
+            toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+            topping.toppingOff = toppingOffset;
         }
     });
 
@@ -56,7 +61,8 @@ var pizzaUI = function(){
     // but the stop condition isn't firing for some reason
     function dragtop(topping) {
         var t = "#"+topping.id;
-        $( t ).draggable({
+        console.log("hi");
+       /* $( t ).draggable({
             stop: function(event, ui) {
                 console.log("dropped");
                 var toppingLoc = $(t).position().left;
@@ -64,7 +70,8 @@ var pizzaUI = function(){
                 topping.toppingOff = toppingOffset;
             }
         }); 
-        $( "#pizza" ).droppable();
+
+        $( "#pizza" ).droppable();*/
         
       }
 
