@@ -174,6 +174,7 @@ var pizzaUI = function(){
             //Reverts all divs back to empty so that we don't have leftovers from the last round.
             $('#ToppingName'+changeBack.toString()).text("");
         }
+        console.log(game.currentToppings)
         for (var i = 0; i<game.currentToppings.length; i++){
             currTopping = game.currentToppings[i];
             if (currTopping!=topping){
@@ -207,7 +208,11 @@ var pizzaUI = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
+        if (game.lives == 0){
+            console.log("you lose");
+            game.lives -=1;
+        }
+        else if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
             this.waiting();
