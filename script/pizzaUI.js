@@ -84,13 +84,13 @@ var pizzaUI = function(){
         elem.setAttribute("src", str);
         elem.setAttribute("height", "30");
         elem.setAttribute("width", "30");
-        if(id=="sauce"){
+        if(id=="Sauce"){
             elem.setAttribute("height", "110");
             elem.setAttribute("width", "260");
             elem.setAttribute("z-index", "1");  
             this.html.setAttribute('z-index', '1');    
         }
-        if(id=="cheese"){
+        if(id=="Cheese"){
             elem.setAttribute("height", "100");
             elem.setAttribute("width", "250"); 
             elem.setAttribute("z-index", "5");  
