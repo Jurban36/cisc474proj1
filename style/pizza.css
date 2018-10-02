@@ -1,3 +1,17 @@
+#onion{
+    background-image: url("../images/onion.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#olive{
+    background-image: url("../images/fullolive.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #sauce{
     background-image: url("../images/sauce.png");
     background-size: contain;
@@ -19,9 +33,7 @@
     background-position: center center;
 }
 
-#tomatoes{
 
-}
 
 #basil{
     background-image: url("../images/basil.png");
@@ -74,7 +86,14 @@
 }
 #scoreboard{
     position: relative;
-    background-color: white;
+    /* background-color: white; */
+    background-image: url("../images/sign.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 1%;
+    padding-left: 2%;
+    top: 25px;
     height: 70%;
     width: 25%;
     top: 0%;
@@ -118,11 +137,10 @@
     height: 20px;
     width: 20px;
     z-index: 3;
-    overflow: hidden;
 }
 
 #maingame{
-    background-image: url("../images/startspeed3.gif");
+    background-image: url("../images/conveyorspeed10.gif");
     background-size: cover;
     background-repeat: repeat;
     background-position: center center;
