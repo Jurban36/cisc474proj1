@@ -1,3 +1,4 @@
+
 var pizzaUI = function(){
     var self = this;
     var toppingOffset = 0;
@@ -56,6 +57,11 @@ var pizzaUI = function(){
         }
         if(window.dragflag==1){
             window.dragflag=0;
+            var t = "#"+window.newtop.id;
+            console.log("dropped");
+            var toppingLoc = $(t).position().left;
+            toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+            topping.toppingOff = toppingOffset;
         }
     });
 
@@ -232,7 +238,6 @@ var pizzaUI = function(){
         }
 
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
-
         
         
 
