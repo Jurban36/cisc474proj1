@@ -20,8 +20,8 @@
 }
 
 #cheese{
-    background-image: url("../images/cheese.png");
-    background-size: contain;
+    background-image: url("../images/cheesepilesquare.png");
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
