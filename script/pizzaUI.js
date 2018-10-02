@@ -1,3 +1,4 @@
+
 var pizzaUI = function(){
     var self = this;
     var toppingOffset = 0;
@@ -42,27 +43,25 @@ var pizzaUI = function(){
 
     //this checks if user has stopped holding the topping
     $( "#contain" ).mouseup(function( event ) {
-        console.log(event);
         var x = event.pageX;
         var y = event.pageY;
         toppingOffset = x - game.options.currentPizzaPosition;
         window.newtop.toppingOff = toppingOffset;
         var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
         if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
-            // console.log("kjf");
             window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
-        
         else{
             window.newtop.html.parentNode.removeChild(window.newtop.html);
         }
-
-
-
-
         if(window.dragflag==1){
             window.dragflag=0;
+            var t = "#"+window.newtop.id;
+            console.log("dropped");
+            var toppingLoc = $(t).position().left;
+            toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+            topping.toppingOff = toppingOffset;
         }
     });
 
@@ -85,13 +84,13 @@ var pizzaUI = function(){
         elem.setAttribute("src", str);
         elem.setAttribute("height", "30");
         elem.setAttribute("width", "30");
-        if(id=="Sauce"){
+        if(id=="sauce"){
             elem.setAttribute("height", "110");
             elem.setAttribute("width", "260");
             elem.setAttribute("z-index", "1");  
             this.html.setAttribute('z-index', '1');    
         }
-        if(id=="Cheese"){
+        if(id=="cheese"){
             elem.setAttribute("height", "100");
             elem.setAttribute("width", "250"); 
             elem.setAttribute("z-index", "5");  
@@ -116,12 +115,19 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
-    
+      this.updateConveyor = function(){
+        let s1 = 'url("images/conveyorspeed';
+        let s2 = this.speed;
+        let s3 = '.gif")';
+        let finalstring = s1.concat(s2, s3);
+        console.log(finalstring);
+        $(maingame).css("background-image", finalstring);
+    }
+
     this.setSpeed = function(){
-        console.log(this.speed);
         myVar= clearInterval(myVar);
         myVar = setInterval(update, this.speed);
-        console.log(this.speed);
+        updateConveyor();
     }
 
     this.checkForComplete = function(){
@@ -135,12 +141,14 @@ var pizzaUI = function(){
             setSpeed();
             flag = false;
             console.log("u missed one");
+            game.failedPizza(game);
             return;
         }
         if (addedToppings.length == 0){
             this.speed = 10;
             setSpeed();
             flag = false;
+            game.failedPizza(game);
             console.log("u didnt even try");
             return;
         }
@@ -155,6 +163,7 @@ var pizzaUI = function(){
                 this.speed = 10;
                 setSpeed();
                 flag = false;
+                game.failedPizza(game);
                 return;
             }
             else if (toppings.includes(currentTopping)){
@@ -168,11 +177,10 @@ var pizzaUI = function(){
             }
         }
         for (var j = 0; j<toppings.length;j++){
-            console.log("here")
             currentTopping = toppings[i];
-            console.log(toppings[i])
             let integer = minimalToppings.indexOf(currentTopping);
             if (toppingAmount[integer]!=currentQuantities[i]){
+                game.failedPizza(game);
                 console.log("u suck but like two");
                 this.speed =10;
                 setSpeed();
@@ -183,8 +191,10 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             this.speed -= 1;
-             setSpeed();
+             if (this.speed>3){
+                this.speed -= 1;
+                setSpeed();
+             }
         }
     }
 
@@ -223,10 +233,10 @@ var pizzaUI = function(){
     }
     this.waiting = function(){
         for( i in window.addedToppings){
-            window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
+            if (window.addedToppings[i].html.parentNode!==null)
+                window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
         }
         window.addedToppings.length = 0;
-        // game.completedPizza(game);
         game.options.currentPizzaPosition=-($('#maingame').width()* .35);
         flag = false;
     }
@@ -238,7 +248,7 @@ var pizzaUI = function(){
         if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
-            setTimeout(waiting,2000);
+            this.waiting();
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
@@ -247,7 +257,6 @@ var pizzaUI = function(){
         }
 
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
-
         
         
 
@@ -259,8 +268,6 @@ var pizzaUI = function(){
             var x = $("#"+window.addedToppings[i].id).position();
             var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
             if(window.flag == 1){
-                // $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition + window.newtop.toppingOff +'px');
-                // console.log(window.newtop.toppingOff)
                 $('#'+window.addedToppings[i].id).css("left",game.options.currentPizzaPosition+window.addedToppings[i].toppingOff+'px');
             }
             
