@@ -5,7 +5,7 @@ var pizzaUI = function(){
     window.dragflag = 0;
     
     window.addedToppings = [];
-    var speed = 8;
+    var speed = 10;
     var toppingIDs = 0;
     let myVar ;
     let flag = false;
@@ -13,19 +13,19 @@ var pizzaUI = function(){
         game = new pizzaGame();
         game.reset();
         this.setScoreBoard();
-        this.speed = 8;
+        this.speed = 10;
         this.flag = false;
     };
     this.refreshView=function(){
         $('#pizza')
     }
+
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
         window.newtop = new topping(x.currentTarget.getAttribute('value'));
-        window.addedToppings.push(window.newtop);
-        console.log(window.addedToppings)
-        console.log(window.newtop)
+        
+        
         dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
@@ -50,6 +50,7 @@ var pizzaUI = function(){
         var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
         if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
             // console.log("kjf");
+            window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
         if(window.dragflag==1){
@@ -70,7 +71,6 @@ var pizzaUI = function(){
         this.html = document.createElement('div');
         this.html.setAttribute('class', 'topping');
         this.html.setAttribute('id', this.id );
-        // this.html.setAttribute('toppingID', currentTopping)
       }
     
     // enables toppings to be draggable, supposed to calculate topping offset,
@@ -87,6 +87,8 @@ var pizzaUI = function(){
         });
         $( "#pizza" ).droppable();
       }
+
+    
     this.setSpeed = function(){
         console.log(this.speed);
         myVar= clearInterval(myVar);
@@ -120,8 +122,6 @@ var pizzaUI = function(){
         counter = 0;
         for (i in addedToppings){
             currentTopping = addedToppings[i].currentTopping;
-            console.log(currentTopping)
-            console.log(toppingsList)
             if (!toppingsList.includes(currentTopping)){
                 console.log("u suck")
                 this.speed = 10;
@@ -139,18 +139,11 @@ var pizzaUI = function(){
                 counter+=1;
             }
         }
-        console.log(minimalToppings);
-        console.log(toppingAmount);
-        console.log(toppings)
-        console.log(currentQuantities);
         for (var j = 0; j<toppings.length;j++){
             console.log("here")
             currentTopping = toppings[i];
             console.log(toppings[i])
             let integer = minimalToppings.indexOf(currentTopping);
-            console.log(integer)
-            console.log(toppingAmount[integer]);
-            console.log(currentQuantities[integer]);
             if (toppingAmount[integer]!=currentQuantities[i]){
                 console.log("u suck but like two");
                 this.speed =10;
@@ -217,11 +210,7 @@ var pizzaUI = function(){
         if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
-            // for( i in window.addedToppings){
-            //     window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
-            // }
-            // window.addedToppings.length = 0;
-            setTimeout(waiting,3000);
+            setTimeout(waiting,2000);
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
