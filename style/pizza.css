@@ -1,3 +1,10 @@
+#onion{
+    background-image: url("../images/onion.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #sauce{
     background-image: url("../images/sauce.png");
     background-size: contain;
