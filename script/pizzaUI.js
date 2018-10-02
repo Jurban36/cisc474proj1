@@ -3,26 +3,29 @@ var pizzaUI = function(){
     var toppingOffset = 0;
     this.game = undefined;
     window.dragflag = 0;
-    window.toppingiter = 0;
+    
     window.addedToppings = [];
-    var speed = 4;
+    var speed = 10;
     var toppingIDs = 0;
     let myVar ;
+    let flag = false;
     this.initialize=function(){
         game = new pizzaGame();
         game.reset();
         this.setScoreBoard();
-        this.speed = 4;
+        this.speed = 10;
+        this.flag = false;
     };
     this.refreshView=function(){
         $('#pizza')
     }
+
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
-        window.newtop = new topping(x.currentTarget.getAttribute('value')+window.toppingiter);
-        window.toppingiter++;
-        window.addedToppings.push(window.newtop);
+        window.newtop = new topping(x.currentTarget.getAttribute('value'));
+        
+        
         dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
@@ -47,11 +50,9 @@ var pizzaUI = function(){
         var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
         if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
             // console.log("kjf");
+            window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
-
-
-
         if(window.dragflag==1){
             window.dragflag=0;
         }
@@ -70,7 +71,6 @@ var pizzaUI = function(){
         this.html = document.createElement('div');
         this.html.setAttribute('class', 'topping');
         this.html.setAttribute('id', this.id );
-        // this.html.setAttribute('toppingID', currentTopping)
       }
     
     // enables toppings to be draggable, supposed to calculate topping offset,
@@ -87,6 +87,8 @@ var pizzaUI = function(){
         });
         $( "#pizza" ).droppable();
       }
+
+    
     this.setSpeed = function(){
         console.log(this.speed);
         myVar= clearInterval(myVar);
@@ -96,7 +98,18 @@ var pizzaUI = function(){
 
     this.checkForComplete = function(){
         let flag = true;
-        if (window.addedToppings.length == 0){
+        let toppingsList = game.currentToppings;
+        let addedToppings = window.addedToppings;
+        let toppingAmount = game.toppingAmount;
+        let minimalToppings = game.currentToppingsList;
+        if (toppingsList.length!==addedToppings.length){
+            this.speed = 10;
+            setSpeed();
+            flag = false;
+            console.log("u missed one");
+            return;
+        }
+        if (addedToppings.length == 0){
             this.speed = 10;
             setSpeed();
             flag = false;
@@ -107,9 +120,9 @@ var pizzaUI = function(){
         let toppings = [];
         let currentQuantities = []
         counter = 0;
-        for (i in window.addedToppings){
-            currentTopping = window.addedToppings[i].currentTopping;
-            if (!game.currentToppings.includes(currentTopping)){
+        for (i in addedToppings){
+            currentTopping = addedToppings[i].currentTopping;
+            if (!toppingsList.includes(currentTopping)){
                 console.log("u suck")
                 this.speed = 10;
                 setSpeed();
@@ -127,9 +140,11 @@ var pizzaUI = function(){
             }
         }
         for (var j = 0; j<toppings.length;j++){
+            console.log("here")
             currentTopping = toppings[i];
-            let integer = game.currentToppings.indexOf(currentTopping);
-            if (game.toppingAmount[integer]!=currentQuantities[integer]){
+            console.log(toppings[i])
+            let integer = minimalToppings.indexOf(currentTopping);
+            if (toppingAmount[integer]!=currentQuantities[i]){
                 console.log("u suck but like two");
                 this.speed =10;
                 setSpeed();
@@ -178,20 +193,24 @@ var pizzaUI = function(){
         $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
         $('#Score').text("Score: "+game.totalScore);
     }
+    this.waiting = function(){
+        for( i in window.addedToppings){
+            window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
+        }
+        window.addedToppings.length = 0;
+        game.completedPizza(game);
+        game.options.currentPizzaPosition=-($('#maingame').width()* .35);
+        flag = false;
+    }
     
     this.update = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if ($('#maingame').width()  < game.options.currentPizzaPosition) {
+        if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
+            flag = true;
             this.checkForComplete();
-            game.options.currentPizzaPosition=-($('#maingame').width()* .28);
-            game.completedPizza(game);
-            for( i in window.addedToppings){
-                window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
-            }
-            window.addedToppings.length = 0;
-            
+            setTimeout(waiting,2000);
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
