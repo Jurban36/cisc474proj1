@@ -89,12 +89,13 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
+      //updates the background image of the conveyor to its corresponding gif
       this.updateConveyor = function(){
         let s1 = 'url("images/conveyorspeed';
         let s2 = this.speed;
         let s3 = '.gif")';
-        let finalstring = s1.concat(s2, s3);
-        console.log(finalstring);
+        let finalstring = s1.concat(s2, s3); 
+        //console.log(finalstring);
         $(maingame).css("background-image", finalstring);
     }
 
