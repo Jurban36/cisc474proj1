@@ -53,6 +53,9 @@ var pizzaUI = function(){
             window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
+        else{
+            window.newtop.html.parentNode.removeChild(window.newtop.html);
+        }
         if(window.dragflag==1){
             window.dragflag=0;
         }
