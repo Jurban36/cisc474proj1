@@ -107,12 +107,14 @@ var pizzaUI = function(){
             setSpeed();
             flag = false;
             console.log("u missed one");
+            game.failedPizza(game);
             return;
         }
         if (addedToppings.length == 0){
             this.speed = 10;
             setSpeed();
             flag = false;
+            game.failedPizza(game);
             console.log("u didnt even try");
             return;
         }
@@ -127,6 +129,7 @@ var pizzaUI = function(){
                 this.speed = 10;
                 setSpeed();
                 flag = false;
+                game.failedPizza(game);
                 return;
             }
             else if (toppings.includes(currentTopping)){
@@ -145,6 +148,7 @@ var pizzaUI = function(){
             console.log(toppings[i])
             let integer = minimalToppings.indexOf(currentTopping);
             if (toppingAmount[integer]!=currentQuantities[i]){
+                game.failedPizza(game);
                 console.log("u suck but like two");
                 this.speed =10;
                 setSpeed();
@@ -155,8 +159,10 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             this.speed -= 1;
-             setSpeed();
+             if (this.speed>3){
+                this.speed -= 1;
+                setSpeed();
+             }
         }
     }
 
