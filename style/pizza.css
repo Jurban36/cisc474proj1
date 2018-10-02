@@ -103,10 +103,11 @@
     height: 90%;
     width: 12.5%;
     margin: 5px;
-    float: right;
+    float: left;
     border-style: solid;
     border-width: 0.5px;
     z-index: 2;
+
 }
 .binmushroom{
     background-color: #9e7965;
@@ -124,18 +125,20 @@
     background-color: #023d02;
 }
 #topping{
-    position: absolute;
+    position: relative;
     background-color: black;
     height: 20px;
     width: 20px;
     z-index: 3;
+    
 }
 .topping{
     position: absolute;
-    background-color: black;
+    /* background-color: black; */
     height: 20px;
     width: 20px;
-    z-index: 3;
+    z-index: 5;
+    
 }
 
 #maingame{
@@ -145,6 +148,7 @@
     background-position: center center;
     height: 40%;
     overflow: hidden;
+    z-index: 2;
     /* margin-left: 0; */
 }
 

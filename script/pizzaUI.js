@@ -70,6 +70,7 @@ var pizzaUI = function(){
     function topping(id) {
         // this.id = toppingIDs;
         // this.currentTopping = id;
+        console.log(id);
         this.id = toppingIDs;
         this.currentTopping = id;
         toppingIDs+=1;
@@ -78,6 +79,25 @@ var pizzaUI = function(){
         this.html = document.createElement('div');
         this.html.setAttribute('class', 'topping');
         this.html.setAttribute('id', this.id );
+        var elem = document.createElement("img");
+        var str = "images/"+id.toLowerCase()+".png";
+        elem.setAttribute("src", str);
+        elem.setAttribute("height", "30");
+        elem.setAttribute("width", "30");
+        if(id=="sauce"){
+            elem.setAttribute("height", "110");
+            elem.setAttribute("width", "260");
+            elem.setAttribute("z-index", "1");  
+            this.html.setAttribute('z-index', '1');    
+        }
+        if(id=="cheese"){
+            elem.setAttribute("height", "100");
+            elem.setAttribute("width", "250"); 
+            elem.setAttribute("z-index", "5");  
+            this.html.setAttribute('z-index', '5');    
+        }
+        this.html.appendChild(elem);
+        //this.html.setAttribute('background-image', url("../images/mushroom.png"));
       }
     
     // enables toppings to be draggable, supposed to calculate topping offset,
