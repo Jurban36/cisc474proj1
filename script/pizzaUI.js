@@ -1,3 +1,4 @@
+
 var pizzaUI = function(){
     var self = this;
     var toppingOffset = 0;
@@ -51,8 +52,16 @@ var pizzaUI = function(){
             window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
+        else{
+            window.newtop.html.parentNode.removeChild(window.newtop.html);
+        }
         if(window.dragflag==1){
             window.dragflag=0;
+            var t = "#"+window.newtop.id;
+            console.log("dropped");
+            var toppingLoc = $(t).position().left;
+            toppingOffset = toppingLoc - game.options.currentPizzaPosition;
+            topping.toppingOff = toppingOffset;
         }
     });
 
@@ -86,10 +95,19 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
-    
+      this.updateConveyor = function(){
+        let s1 = 'url("images/conveyorspeed';
+        let s2 = this.speed;
+        let s3 = '.gif")';
+        let finalstring = s1.concat(s2, s3);
+        console.log(finalstring);
+        $(maingame).css("background-image", finalstring);
+    }
+
     this.setSpeed = function(){
         myVar= clearInterval(myVar);
         myVar = setInterval(update, this.speed);
+        updateConveyor();
     }
 
     this.checkForComplete = function(){
@@ -224,7 +242,6 @@ var pizzaUI = function(){
         }
 
         $('#pizza').css("left",game.options.currentPizzaPosition+'px');
-
         
         
 
