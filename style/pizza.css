@@ -65,7 +65,14 @@
 
 #scoreboard{
     position: relative;
-    background-color: white;
+    /* background-color: white; */
+    background-image: url("../images/sign.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 1%;
+    padding-left: 2%;
+    top: 25px;
     height: 70%;
     width: 25%;
     top: 0%;
@@ -96,7 +103,7 @@
 }
 
 #maingame{
-    background-image: url("../images/startspeed3.gif");
+    background-image: url("../images/startspeed.gif");
     background-size: cover;
     background-repeat: repeat;
     background-position: center center;
