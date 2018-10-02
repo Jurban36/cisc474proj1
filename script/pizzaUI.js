@@ -3,7 +3,7 @@ var pizzaUI = function(){
     var toppingOffset = 0;
     this.game = undefined;
     window.dragflag = 0;
-    window.toppingiter = 0;
+    
     window.addedToppings = [];
     var speed = 4;
     var toppingIDs = 0;
@@ -17,12 +17,13 @@ var pizzaUI = function(){
     this.refreshView=function(){
         $('#pizza')
     }
+
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
-        window.newtop = new topping(x.currentTarget.getAttribute('value')+window.toppingiter);
-        window.toppingiter++;
-        window.addedToppings.push(window.newtop);
+        window.newtop = new topping(x.currentTarget.getAttribute('value'));
+        
+        
         dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
         $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
@@ -47,6 +48,7 @@ var pizzaUI = function(){
         var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
         if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
             // console.log("kjf");
+            window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
 
@@ -70,7 +72,6 @@ var pizzaUI = function(){
         this.html = document.createElement('div');
         this.html.setAttribute('class', 'topping');
         this.html.setAttribute('id', this.id );
-        // this.html.setAttribute('toppingID', currentTopping)
       }
     
     // enables toppings to be draggable, supposed to calculate topping offset,
@@ -87,6 +88,8 @@ var pizzaUI = function(){
         });
         $( "#pizza" ).droppable();
       }
+
+    
     this.setSpeed = function(){
         console.log(this.speed);
         myVar= clearInterval(myVar);
