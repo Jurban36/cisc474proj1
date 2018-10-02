@@ -1,3 +1,17 @@
+#onion{
+    background-image: url("../images/onion.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#olive{
+    background-image: url("../images/fullolive.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #sauce{
     background-image: url("../images/sauce.png");
     background-size: contain;
@@ -63,7 +77,14 @@
 
 #scoreboard{
     position: relative;
-    background-color: white;
+    /* background-color: white; */
+    background-image: url("../images/sign.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 1%;
+    padding-left: 2%;
+    top: 25px;
     height: 70%;
     width: 25%;
     top: 0%;
@@ -75,31 +96,35 @@
     width: 12.5%;
     float: left;
     z-index: 2;
+
 }
 
 #topping{
-    position: absolute;
+    position: relative;
     background-color: black;
     height: 20px;
     width: 20px;
     z-index: 3;
+    
 }
 .topping{
     position: absolute;
-    background-color: black;
+    /* background-color: black; */
     height: 20px;
     width: 20px;
-    z-index: 3;
-    overflow: hidden;
+    z-index: 5;
+    
 }
 
 #maingame{
-    background-image: url("../images/startspeed3.gif");
+    position: relative;
+    background-image: url("../images/startspeed.gif");
     background-size: cover;
     background-repeat: repeat;
     background-position: center center;
     height: 40%;
     overflow: hidden;
+    z-index: 2;
     /* margin-left: 0; */
 }
 
