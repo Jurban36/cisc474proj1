@@ -152,9 +152,9 @@ var pizzaUI = function(){
                 return;
             }
         }
-        console.log("ur doing great sweetie");
-        game.completedPizza(game);
         if (flag==true){
+            console.log("ur doing great sweetie");
+            game.completedPizza(game);
              this.speed -= 1;
              setSpeed();
         }
@@ -198,7 +198,7 @@ var pizzaUI = function(){
             window.addedToppings[i].html.parentNode.removeChild(window.addedToppings[i].html);
         }
         window.addedToppings.length = 0;
-        game.completedPizza(game);
+        // game.completedPizza(game);
         game.options.currentPizzaPosition=-($('#maingame').width()* .35);
         flag = false;
     }
