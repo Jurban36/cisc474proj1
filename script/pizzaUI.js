@@ -89,10 +89,19 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
-    
+      this.updateConveyor = function(){
+        let s1 = 'url("images/conveyorspeed';
+        let s2 = this.speed;
+        let s3 = '.gif")';
+        let finalstring = s1.concat(s2, s3);
+        console.log(finalstring);
+        $(maingame).css("background-image", finalstring);
+    }
+
     this.setSpeed = function(){
         myVar= clearInterval(myVar);
         myVar = setInterval(update, this.speed);
+        updateConveyor();
     }
 
     this.checkForComplete = function(){
