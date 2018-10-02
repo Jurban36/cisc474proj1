@@ -4,6 +4,7 @@ var pizzaUI = function(){
     var toppingOffset = 0;
     this.game = undefined;
     window.dragflag = 0;
+    window.toppingiter = 0;
     window.addedToppings = [];
     var speed = 4;
     var toppingIDs = 0;
@@ -20,7 +21,8 @@ var pizzaUI = function(){
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
-        window.newtop = new topping(x.currentTarget.getAttribute('value'));
+        window.newtop = new topping(x.currentTarget.getAttribute('value')+window.toppingiter);
+        window.toppingiter++;
         window.addedToppings.push(window.newtop);
         dragtop(window.newtop.html);
         $(x.currentTarget).append(window.newtop.html);
