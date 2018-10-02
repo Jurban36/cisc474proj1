@@ -58,7 +58,7 @@ var pizzaUI = function(){
         if(window.dragflag==1){
             window.dragflag=0;
             var t = "#"+window.newtop.id;
-            console.log("dropped");
+            // console.log("dropped");
             var toppingLoc = $(t).position().left;
             toppingOffset = toppingLoc - game.options.currentPizzaPosition;
             topping.toppingOff = toppingOffset;
@@ -95,12 +95,12 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
-      this.updateConveyor = function(){
+    this.updateConveyor = function(){
         let s1 = 'url("images/conveyorspeed';
         let s2 = this.speed;
         let s3 = '.gif")';
         let finalstring = s1.concat(s2, s3);
-        console.log(finalstring);
+        // console.log(finalstring);
         $(maingame).css("background-image", finalstring);
     }
 
@@ -115,7 +115,6 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
-        let minimalToppings = game.currentToppingsList;
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -158,7 +157,7 @@ var pizzaUI = function(){
         }
         for (var j = 0; j<toppings.length;j++){
             currentTopping = toppings[i];
-            let integer = minimalToppings.indexOf(currentTopping);
+            let integer = toppingsList.indexOf(currentTopping);
             if (toppingAmount[integer]!=currentQuantities[i]){
                 game.failedPizza(game);
                 console.log("u suck but like two");
@@ -171,7 +170,7 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             if (this.speed>3){
+             if (this.speed>5){
                 this.speed -= 1;
                 setSpeed();
              }
@@ -192,7 +191,6 @@ var pizzaUI = function(){
             //Reverts all divs back to empty so that we don't have leftovers from the last round.
             $('#ToppingName'+changeBack.toString()).text("");
         }
-        console.log(game.currentToppings)
         for (var i = 0; i<game.currentToppings.length; i++){
             currTopping = game.currentToppings[i];
             if (currTopping!=topping){

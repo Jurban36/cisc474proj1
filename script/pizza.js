@@ -39,9 +39,7 @@ var pizzaGame = function () {
     this.randomizeDesiredElements = function(pizzaGame){
         var flag = false;
         var amountOfToppings = Math.floor(Math.random() * 4)+1 //randomizes some amount of toppings
-        // console.log(amountOfToppings);
         pizzaGame.currentToppings=[];
-        console.log(amountOfToppings)
         pizzaGame.currentToppings.length=amountOfToppings+2;
         var toppingNumber = 0;
         let i = 2;
@@ -49,26 +47,16 @@ var pizzaGame = function () {
         let counter2 = 2;
         let counter3=2;
         let selectedToppings = [0,0]
-        pizzaGame.currentToppings[0]="Cheese";
-        pizzaGame.currentToppings[1]="Sauce";
-        // pizzaGame.currentToppings = [];
-        pizzaGame.currentToppingsList = [];
         pizzaGame.currentToppings.length = amountOfToppings+2;
-        pizzaGame.currentToppingsList.length = amountOfToppings+2;
-        pizzaGame.currentToppingsList[0]="Cheese";
-        pizzaGame.currentToppingsList[1]="Sauce";
+        pizzaGame.currentToppings[0]="Sauce";
+        pizzaGame.currentToppings[1]="Cheese";
         pizzaGame.toppingAmount = [];
-        pizzaGame.toppingAmount.length = amountOfToppings+2;
         pizzaGame.toppingAmount[0]=1;
         pizzaGame.toppingAmount[1]=1;
         while (toppingNumber<amountOfToppings){
-            console.log("AOT",amountOfToppings)
-            console.log("TN",toppingNumber)
             //This selects the next round of toppings and the breakdown for said toppings.
             var chosenToppings = Math.floor(Math.random() * pizzaGame.toppingQuantity)
             selectedToppings[counter3]=0;
-            console.log("len",pizzaGame.toppingList.length+2)
-            console.log("Length",selectedToppings.length)
             if (!pizzaGame.currentToppings.includes(pizzaGame.toppingList[chosenToppings])){
                 if (selectedToppings.length == pizzaGame.toppingList.length+2){
                     let quantityOfTopping =  amountOfToppings - toppingNumber;
@@ -86,15 +74,11 @@ var pizzaGame = function () {
                     counter3+=1;
                     //This sees if the topping randomly selected is already on the list. If it is, the 
                     //game will skip the process of adding it in.
-                    // console.log(pizzaGame.currentToppings);
-                    pizzaGame.currentToppingsList[counter2]=pizzaGame.toppingList[chosenToppings];
                     let quantityOfTopping = 100;
                     while (quantityOfTopping+toppingNumber>amountOfToppings)
                         //This will select a random amount of toppings that will eventually get the quantity
                         //of toppings to the amount needed to fill out the list
                         quantityOfTopping = Math.floor(Math.random() * amountOfToppings)+1;//picks an amount of said topping
-                    // console.log("QOT",quantityOfTopping)
-                    console.log("C2",counter2);
                     pizzaGame.toppingAmount[counter2] = quantityOfTopping;
                     counter2=counter2+1;
                     for (var j = 0;j<quantityOfTopping; j++){
@@ -104,8 +88,6 @@ var pizzaGame = function () {
                         i++;
                     }
                     toppingNumber +=quantityOfTopping;
-                    // console.log("AoT",amountOfToppings);
-                    // console.log("TN",toppingNumber)
                 }
             }
             counter +=1;
@@ -113,8 +95,6 @@ var pizzaGame = function () {
                 toppingNumber = amountOfToppings;
             }
         }
-
-        console.log(pizzaGame.currentToppingsList);
-        console.log(pizzaGame.toppingAmount)
+        console.log(pizzaGame.currentToppings)
     }
 }
