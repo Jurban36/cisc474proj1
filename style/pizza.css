@@ -1,5 +1,6 @@
 #onion{
     background-image: url("../images/onion.png");
+    background-color: darkmagenta;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -7,20 +8,23 @@
 
 #olive{
     background-image: url("../images/fullolive.png");
+    background-color: olive;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #sauce{
-    background-image: url("../images/sauce.png");
-    background-size: contain;
+    background-image: url("../images/saucebin.png");
+    background-color: #770a04;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #cheese{
     background-image: url("../images/cheesepilesquare.png");
+    background-color: #e8aa1b;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -28,6 +32,7 @@
 
 #mushroom{
     background-image: url("../images/mushroom.png");
+    background-color: #9e7965;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -37,6 +42,7 @@
 
 #basil{
     background-image: url("../images/basil.png");
+    background-color: #023d02;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -47,6 +53,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: #6b0a05;
 }
 
 #pizza{
@@ -108,21 +115,7 @@
     border-width: 0.5px;
     z-index: 2;
 }
-.binmushroom{
-    background-color: #9e7965;
-}
-.binpepperoni{
-    background-color: #6b0a05;
-}
-.bincheese{
-    background-color: #e8aa1b;
-}
-.binsauce{
-    background-color: #770a04;
-}
-.binbasil{
-    background-color: #023d02;
-}
+
 #topping{
     position: absolute;
     background-color: black;
