@@ -8,7 +8,10 @@ var pizzaGame = function () {
         totalScore: 0,
         toppingQuantity: 3,
         chosenQuantity: 0,
-        lives: 3
+        lives: 3,
+        completedPizzaCounter: 0,
+        placeInCurrentToppings: 2,
+        placeInRemainingToppings: 0
     }
     this.initialize = function(){
         self.reset;
@@ -19,22 +22,43 @@ var pizzaGame = function () {
         self.currentScoreIncrement=100;
         self.toppingQuantity = 2;
         self.lives = 3;
+        self.toppingListRemaining = ["Mushroom","Olive","Onion"];
         self.toppingList = ["Pepperoni", "Basil"];
         self.currentToppings = []; //This is the current toppings we want to be put on the list.
         self.currentToppingsList = [];
         self.toppingAmount = [];
+        self.completedPizzaCounter = 0;
+        self.placeInCurrentToppings = 2;
+        self.placeInRemainingToppings = 0;
         self.chosenQuantity=0; //This is the total amount of toppings we want.
     }
     this.incrementPizza = function () {
         var self = this;
     }
     this.failedPizza = function(pizzaGame){
+        $("#lives"+this.lives).hide();
         pizzaGame.lives = pizzaGame.lives-1;
         pizzaGame.currentScoreIncrement=100;
+        self.toppingListRemaining = ["Mushroom","Olive","Onion"];
+        self.toppingList = ["Pepperoni", "Basil"];
+        self.completedPizzaCounter = 0;
+        self.placeInCurrentToppings = 2;
+        self.placeInRemainingToppings = 0;
     }
     this.completedPizza = function(pizzaGame){
         pizzaGame.totalScore =pizzaGame.totalScore+self.currentScoreIncrement;
         pizzaGame.currentScoreIncrement=pizzaGame.currentScoreIncrement+10;
+        pizzaGame.completedPizzaCounter+=1;
+        console.log(pizzaGame.toppingList)
+        console.log(pizzaGame.completedPizzaCounter)
+        console.log("Counter",pizzaGame.completedPizzaCounter%3)
+        if ((pizzaGame.completedPizzaCounter%3==0)&&(pizzaGame.completedPizzaCounter<=9)){
+            pizzaGame.toppingList[pizzaGame.placeInCurrentToppings] = pizzaGame.toppingListRemaining[self.placeInRemainingToppings];
+            pizzaGame.placeInCurrentToppings+=1;
+            pizzaGame.placeInRemainingToppings+=1;
+            self.toppingQuantity+=1;
+        }
+        console.log(pizzaGame.toppingList)
     }
     this.randomizeDesiredElements = function(pizzaGame){
         var flag = false;
