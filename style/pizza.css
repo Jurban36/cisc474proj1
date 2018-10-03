@@ -89,6 +89,7 @@
     }
 .toppingbar{
     background-color: gray; 
+    background-image: url("../images/toptexture.jpg");
     border-style: solid;
     border-width: 0.5px;
     height: 14%;
