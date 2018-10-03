@@ -58,7 +58,7 @@ var pizzaUI = function(){
         if(window.dragflag==1){
             window.dragflag=0;
             var t = "#"+window.newtop.id;
-            console.log("dropped");
+            // console.log("dropped");
             var toppingLoc = $(t).position().left;
             toppingOffset = toppingLoc - game.options.currentPizzaPosition;
             topping.toppingOff = toppingOffset;
@@ -84,13 +84,13 @@ var pizzaUI = function(){
         elem.setAttribute("src", str);
         elem.setAttribute("height", "30");
         elem.setAttribute("width", "30");
-        if(id=="sauce"){
+        if(id=="Sauce"){
             elem.setAttribute("height", "110");
             elem.setAttribute("width", "260");
             elem.setAttribute("z-index", "1");  
             this.html.setAttribute('z-index', '1');    
         }
-        if(id=="cheese"){
+        if(id=="Cheese"){
             elem.setAttribute("height", "100");
             elem.setAttribute("width", "250"); 
             elem.setAttribute("z-index", "5");  
@@ -135,7 +135,6 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
-        let minimalToppings = game.currentToppingsList;
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -178,7 +177,7 @@ var pizzaUI = function(){
         }
         for (var j = 0; j<toppings.length;j++){
             currentTopping = toppings[i];
-            let integer = minimalToppings.indexOf(currentTopping);
+            let integer = toppingsList.indexOf(currentTopping);
             if (toppingAmount[integer]!=currentQuantities[i]){
                 game.failedPizza(game);
                 console.log("u suck but like two");
@@ -191,7 +190,7 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             if (this.speed>3){
+             if (this.speed>5){
                 this.speed -= 1;
                 setSpeed();
              }
@@ -245,7 +244,11 @@ var pizzaUI = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
+        if (game.lives == 0){
+            console.log("you lose");
+            game.lives -=1;
+        }
+        else if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
             this.waiting();
