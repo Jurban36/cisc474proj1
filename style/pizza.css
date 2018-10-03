@@ -61,6 +61,19 @@
     left: -700px;
     z-index: 2;
 }
+.lives{
+    /* position: relative; */
+    float:right;
+    margin-right:35px;
+    background-image: url("../images/lives.png");
+    background-repeat: no-repeat;
+    background-position:right;
+    /* background-color: red; */
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+}
 .noselect { 
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
