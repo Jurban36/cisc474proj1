@@ -179,7 +179,7 @@ textarea {
 }
 
 #background{
-    width: 95vw;
+    width: 100vw;
     height: 90vh;
     background-image: url("../images/background.jpg");
     background-position: 0 -100px;
