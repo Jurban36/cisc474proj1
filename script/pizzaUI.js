@@ -139,6 +139,8 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
+        console.log(toppingsList);
+        console.log(addedToppings);
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -211,27 +213,28 @@ var pizzaUI = function(){
         let toppingQuantity = 1; //This tracks the total amount of one topping
         let topping = ""; //This is the topping being tracked rn
         let currTopping = ""; //This is the topping that is at the current address in the currentToppings array.
-        for (var changeBack = 1; changeBack<9;changeBack++){
-            //Reverts all divs back to empty so that we don't have leftovers from the last round.
-            $('#ToppingName'+changeBack.toString()).text("");
-        }
+        // for (var changeBack = 1; changeBack<9;changeBack++){
+        //     //Reverts all divs back to empty so that we don't have leftovers from the last round.
+        //     $('#ToppingName'+changeBack.toString()).text("");
+        // }
+        let str = "Score: "+game.totalScore+"\n";
         for (var i = 0; i<game.currentToppings.length; i++){
             currTopping = game.currentToppings[i];
             if (currTopping!=topping){
                 if (topping !== ""){
                     //This handles putting the topping into the scorebord on the div
-                    $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
-                    toppingNumber+=1;
+                    // $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
+                    str+=topping+": "+toppingQuantity.toString()+"\n";
                 }
                 topping = currTopping;
-                toppingQuantity = 1;
             }
             else{
                 toppingQuantity +=1;
             }
         }
+        str+=topping+": "+toppingQuantity.toString()+"\n";
         //Next one is the last topping. If there is only one topping, this will be the only one to be filled
-        $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
+        $('#ToppingName1').text(str);
         $('#Score').text("Score: "+game.totalScore);
     }
     this.waiting = function(){
