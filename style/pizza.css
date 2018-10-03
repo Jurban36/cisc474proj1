@@ -116,7 +116,7 @@ textarea {
     position: absolute;
   }
 #scoreboard{
-    overflow-x: auto; 
+    overflow:auto;
     position: relative;
     /* white-space:normal; */
     /* background-color: white; */
