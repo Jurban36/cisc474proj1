@@ -1,5 +1,5 @@
 #onion{
-    background-image: url("../images/onion.png");
+    background-image: url("../images/onionbin.png");
     background-color: darkmagenta;
     background-size: contain;
     background-repeat: no-repeat;
@@ -7,7 +7,7 @@
 }
 
 #olive{
-    background-image: url("../images/fullolive.png");
+    background-image: url("../images/olivebin.png");
     background-color: olive;
     background-size: contain;
     background-repeat: no-repeat;
@@ -23,15 +23,15 @@
 }
 
 #cheese{
-    background-image: url("../images/cheesepilesquare.png");
+    background-image: url("../images/cheesebin.png");
     background-color: #e8aa1b;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #mushroom{
-    background-image: url("../images/mushroom.png");
+    background-image: url("../images/mushroombin.png");
     background-color: #9e7965;
     background-size: contain;
     background-repeat: no-repeat;
@@ -41,7 +41,7 @@
 
 
 #basil{
-    background-image: url("../images/basil.png");
+    background-image: url("../images/basilbin.png");
     background-color: #023d02;
     background-size: contain;
     background-repeat: no-repeat;
@@ -49,7 +49,7 @@
 }
 
 #pepperoni{
-    background-image: url("../images/pepperoni.png");
+    background-image: url("../images/pepperonibin.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
