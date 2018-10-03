@@ -164,3 +164,15 @@
     background-position: 0 -100px;
     background-size: contain;
 }
+#startscreen{
+    width: 50px;
+    height: auto;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+    background-image: url("../images/pizza\ panic\ start\ template.png");
+    background-repeat: no-repeat;
+    display: none;
+}
