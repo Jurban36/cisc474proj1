@@ -4,7 +4,6 @@ var pizzaUI = function(){
     var toppingOffset = 0;
     this.game = undefined;
     window.dragflag = 0;
-    
     window.addedToppings = [];
     var speed = 10;
     var toppingIDs = 0;
@@ -20,7 +19,12 @@ var pizzaUI = function(){
     this.refreshView=function(){
         $('#pizza')
     }
-
+    this.stop = function(){
+        this.speed = 0;
+        window.addedToppings = [];
+        this.game = undefined;
+        $("#background").hide();
+    }
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
         window.dragflag = 1;
@@ -247,6 +251,7 @@ var pizzaUI = function(){
         if (game.lives == 0){
             console.log("you lose");
             game.lives -=1;
+            // this.stop();
         }
         else if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
