@@ -9,7 +9,14 @@ var pizzaUI = function(){
     var toppingIDs = 0;
     let myVar ;
     let flag = false;
+    
+    this.setStartScreen=function(){
+        $("#background").hide();
+    }
     this.initialize=function(){
+        console.log("init");
+        $("#startscreen").hide();
+        $("#background").show();
         game = new pizzaGame();
         game.reset();
         this.setScoreBoard();
@@ -255,23 +262,23 @@ var pizzaUI = function(){
         /*
         This handles incrementing the pizza across the conveyor belt.
         */
-        if (game.lives == 0){
+        if (game!=null && game.lives == 0){
             console.log("you lose");
             game.lives -=1;
             // this.stop();
         }
-        else if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
+        else if (game!=null && ($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
             this.waiting();
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
-        else {
+        else if (game!=null){
             game.options.currentPizzaPosition+=1;
         }
-
-        $('#pizza').css("left",game.options.currentPizzaPosition+'px');
+        if (game!=null)
+            $('#pizza').css("left",game.options.currentPizzaPosition+'px');
         
         
 
@@ -291,7 +298,7 @@ var pizzaUI = function(){
     }
         
 }
-    this.initialize();
+    this.setStartScreen();
 
     myVar = setInterval(update, this.speed);
 }
