@@ -217,7 +217,7 @@ var pizzaUI = function(){
         //     //Reverts all divs back to empty so that we don't have leftovers from the last round.
         //     $('#ToppingName'+changeBack.toString()).text("");
         // }
-        let str = "Score: "+game.totalScore+"\n";
+        let str = "\nScore: "+game.totalScore+"\n";
         for (var i = 0; i<game.currentToppings.length; i++){
             currTopping = game.currentToppings[i];
             if (currTopping!=topping){
@@ -234,7 +234,7 @@ var pizzaUI = function(){
         }
         str+=topping+": "+toppingQuantity.toString()+"\n";
         //Next one is the last topping. If there is only one topping, this will be the only one to be filled
-        $('#ToppingName1').text(str);
+        $('#scoreboard').text(str);
         $('#Score').text("Score: "+game.totalScore);
     }
     this.waiting = function(){
