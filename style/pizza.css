@@ -189,7 +189,7 @@ textarea {
     background-size: contain;
 }
 #startscreen{
-    background-image: url("../images/pizza\ panic\ start.png");
+    background-image: url("../images/startscreen.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
@@ -216,5 +216,5 @@ a.button1:hover{
 }
 a.playbutton{
     margin-left: 45%;
-    margin-top: 30%;
+    margin-top: 22.5%;
 }
