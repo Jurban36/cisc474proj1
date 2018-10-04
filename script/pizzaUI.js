@@ -301,7 +301,7 @@ var pizzaUI = function(){
         
 }
     this.setStartScreen();
-    this.speed = 1;
+    this.speed = 10;
 
     myVar = setInterval(update, this.speed);
 }
