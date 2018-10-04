@@ -14,13 +14,13 @@ var pizzaUI = function(){
         $("#background").hide();
     }
     this.initialize=function(){
+        this.speed = 10;
         console.log("init");
         $("#startscreen").hide();
         $("#background").show();
         game = new pizzaGame();
         game.reset();
         this.setScoreBoard();
-        this.speed = 10;
         this.flag = false;
     };
     this.refreshView=function(){
@@ -31,6 +31,7 @@ var pizzaUI = function(){
         window.addedToppings = [];
         this.game = undefined;
         $("#background").hide();
+        $("#startscreen").show();
     }
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
@@ -150,8 +151,6 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
-        console.log("TL",toppingsList);
-        console.log("AT",addedToppings);
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -207,10 +206,10 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-            //  if (this.speed>5){
-            //     this.speed -= 1;
-            //     setSpeed();
-            //  }
+             if (this.speed>5){
+                this.speed -= 1;
+                setSpeed();
+             }
         }
     }
 
@@ -265,7 +264,7 @@ var pizzaUI = function(){
         if (game!=null && game.lives == 0){
             console.log("you lose");
             game.lives -=1;
-            // this.stop();
+            this.stop();
         }
         else if (game!=null && ($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
@@ -299,6 +298,7 @@ var pizzaUI = function(){
         
 }
     this.setStartScreen();
+    this.speed = 10;
 
     myVar = setInterval(update, this.speed);
 }
