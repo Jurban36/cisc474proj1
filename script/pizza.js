@@ -39,26 +39,24 @@ var pizzaGame = function () {
         $("#lives"+this.lives).hide();
         pizzaGame.lives = pizzaGame.lives-1;
         pizzaGame.currentScoreIncrement=100;
-        self.toppingListRemaining = ["Mushroom","Olive","Onion"];
-        self.toppingList = ["Pepperoni", "Basil"];
-        self.completedPizzaCounter = 0;
-        self.placeInCurrentToppings = 2;
-        self.placeInRemainingToppings = 0;
+        pizzaGame.toppingListRemaining = ["Mushroom","Olive","Onion"];
+        pizzaGame.toppingList = ["Pepperoni", "Basil"];
+        pizzaGame.completedPizzaCounter = 0;
+        pizzaGame.placeInCurrentToppings = 2;
+        pizzaGame.placeInRemainingToppings = 0;
+        pizzaGame.toppingQuantity = 2;
     }
     this.completedPizza = function(pizzaGame){
         pizzaGame.totalScore =pizzaGame.totalScore+self.currentScoreIncrement;
         pizzaGame.currentScoreIncrement=pizzaGame.currentScoreIncrement+10;
         pizzaGame.completedPizzaCounter+=1;
-        console.log(pizzaGame.toppingList)
-        console.log(pizzaGame.completedPizzaCounter)
-        console.log("Counter",pizzaGame.completedPizzaCounter%3)
         if ((pizzaGame.completedPizzaCounter%3==0)&&(pizzaGame.completedPizzaCounter<=9)){
             pizzaGame.toppingList[pizzaGame.placeInCurrentToppings] = pizzaGame.toppingListRemaining[self.placeInRemainingToppings];
             pizzaGame.placeInCurrentToppings+=1;
             pizzaGame.placeInRemainingToppings+=1;
-            self.toppingQuantity+=1;
+            pizzaGame.toppingQuantity+=1;
         }
-        console.log(pizzaGame.toppingList)
+        // console.log(pizzaGame.toppingQuantity)
     }
     this.randomizeDesiredElements = function(pizzaGame){
         var flag = false;

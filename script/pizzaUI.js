@@ -27,13 +27,15 @@ var pizzaUI = function(){
     }
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
+        console.log(x.clientY)
         window.dragflag = 1;
-        window.newtop = new topping(x.currentTarget.getAttribute('value'));
-        
-        
-        dragtop(window.newtop.html);
-        $(x.currentTarget).append(window.newtop.html);
-        $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+        if (x.clientY<400){
+            window.newtop = new topping(x.currentTarget.getAttribute('value'));
+            console.log(window.newtop)
+            dragtop(window.newtop.html);
+            $(x.currentTarget).append(window.newtop.html);
+            $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+        }
     });
 
     //this function makes the topping follow the mouse when holding the topping
@@ -57,6 +59,8 @@ var pizzaUI = function(){
             window.flag = 1;
         }
         else{
+            console.log(window.newtop)
+            console.log(window.addedToppings)
             window.newtop.html.parentNode.removeChild(window.newtop.html);
         }
         if(window.dragflag==1){
@@ -74,7 +78,7 @@ var pizzaUI = function(){
     function topping(id) {
         // this.id = toppingIDs;
         // this.currentTopping = id;
-        console.log(id);
+        // console.log(id);
         this.id = toppingIDs;
         this.currentTopping = id;
         toppingIDs+=1;
@@ -139,8 +143,8 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
-        console.log(toppingsList);
-        console.log(addedToppings);
+        console.log("TL",toppingsList);
+        console.log("AT",addedToppings);
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -196,10 +200,10 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             if (this.speed>5){
-                this.speed -= 1;
-                setSpeed();
-             }
+            //  if (this.speed>5){
+            //     this.speed -= 1;
+            //     setSpeed();
+            //  }
         }
     }
 
