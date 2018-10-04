@@ -17,6 +17,9 @@ var pizzaUI = function(){
         this.speed = 10;
         console.log("init");
         $("#startscreen").hide();
+        $("#lives1").show();
+        $("#lives2").show();
+        $("#lives3").show();
         $("#background").show();
         game = new pizzaGame();
         game.reset();
@@ -298,7 +301,7 @@ var pizzaUI = function(){
         
 }
     this.setStartScreen();
-    this.speed = 10;
+    this.speed = 1;
 
     myVar = setInterval(update, this.speed);
 }
