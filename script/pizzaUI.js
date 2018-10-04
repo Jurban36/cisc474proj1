@@ -5,6 +5,7 @@ var pizzaUI = function(){
     this.game = undefined;
     window.dragflag = 0;
     window.addedToppings = [];
+    let addedToppingIDs =[];
     var speed = 10;
     var toppingIDs = 0;
     let myVar ;
@@ -66,12 +67,11 @@ var pizzaUI = function(){
         window.newtop.toppingOff = toppingOffset;
         var right = game.options.currentPizzaPosition+$('#background').width()*.22-10;
         if(x > game.options.currentPizzaPosition && x<right && (y > $('#pizza').position().top)){
-            window.addedToppings.push(window.newtop);
+            if (!window.addedToppings.includes(window.newtop))
+                window.addedToppings.push(window.newtop);
             window.flag = 1;
         }
         else{
-            console.log(window.newtop)
-            console.log(window.addedToppings)
             window.newtop.html.parentNode.removeChild(window.newtop.html);
         }
         if(window.dragflag==1){
@@ -150,7 +150,6 @@ var pizzaUI = function(){
     }
 
     this.checkForComplete = function(){
-        console.log(game.lives)
         let flag = true;
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
@@ -274,7 +273,7 @@ var pizzaUI = function(){
         else if (game!=null && ($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;
             this.checkForComplete();
-            this.waiting();
+            setTimeout(this.waiting(), 100);
             $('#Score').text("Score: "+game.totalScore);
             this.setScoreBoard();
         }
