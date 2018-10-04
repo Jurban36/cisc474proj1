@@ -150,6 +150,7 @@ var pizzaUI = function(){
     }
 
     this.checkForComplete = function(){
+        console.log(game.lives)
         let flag = true;
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
@@ -209,6 +210,7 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
+            console.log(this.speed)
              if (this.speed>5){
                 this.speed -= 1;
                 setSpeed();
