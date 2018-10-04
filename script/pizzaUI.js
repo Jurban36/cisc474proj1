@@ -4,7 +4,6 @@ var pizzaUI = function(){
     var toppingOffset = 0;
     this.game = undefined;
     window.dragflag = 0;
-    
     window.addedToppings = [];
     var speed = 10;
     var toppingIDs = 0;
@@ -20,16 +19,23 @@ var pizzaUI = function(){
     this.refreshView=function(){
         $('#pizza')
     }
-
+    this.stop = function(){
+        this.speed = 0;
+        window.addedToppings = [];
+        this.game = undefined;
+        $("#background").hide();
+    }
     //this function generates the topping divs then a toppingdiv gets clicked
     $('.toppingdiv').mousedown(x => {
+        console.log(x.clientY)
         window.dragflag = 1;
-        window.newtop = new topping(x.currentTarget.getAttribute('value'));
-        
-        
-        dragtop(window.newtop.html);
-        $(x.currentTarget).append(window.newtop.html);
-        $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+        if (x.clientY<400){
+            window.newtop = new topping(x.currentTarget.getAttribute('value'));
+            console.log(window.newtop)
+            dragtop(window.newtop.html);
+            $(x.currentTarget).append(window.newtop.html);
+            $("#"+window.newtop.id).offset({left: event.pageX, top: event.pageY});
+        }
     });
 
     //this function makes the topping follow the mouse when holding the topping
@@ -53,6 +59,8 @@ var pizzaUI = function(){
             window.flag = 1;
         }
         else{
+            console.log(window.newtop)
+            console.log(window.addedToppings)
             window.newtop.html.parentNode.removeChild(window.newtop.html);
         }
         if(window.dragflag==1){
@@ -70,7 +78,7 @@ var pizzaUI = function(){
     function topping(id) {
         // this.id = toppingIDs;
         // this.currentTopping = id;
-        console.log(id);
+        // console.log(id);
         this.id = toppingIDs;
         this.currentTopping = id;
         toppingIDs+=1;
@@ -115,12 +123,12 @@ var pizzaUI = function(){
         $( "#pizza" ).droppable();
       }
 
-    this.updateConveyor = function(){
+      //updates the background image of the conveyor to its corresponding gif
+      this.updateConveyor = function(){
         let s1 = 'url("images/conveyorspeed';
         let s2 = this.speed;
         let s3 = '.gif")';
-        let finalstring = s1.concat(s2, s3);
-        // console.log(finalstring);
+        let finalstring = s1.concat(s2, s3); 
         $(maingame).css("background-image", finalstring);
     }
 
@@ -135,6 +143,8 @@ var pizzaUI = function(){
         let toppingsList = game.currentToppings;
         let addedToppings = window.addedToppings;
         let toppingAmount = game.toppingAmount;
+        console.log("TL",toppingsList);
+        console.log("AT",addedToppings);
         if (toppingsList.length!==addedToppings.length){
             this.speed = 10;
             setSpeed();
@@ -190,10 +200,10 @@ var pizzaUI = function(){
         if (flag==true){
             console.log("ur doing great sweetie");
             game.completedPizza(game);
-             if (this.speed>5){
-                this.speed -= 1;
-                setSpeed();
-             }
+            //  if (this.speed>5){
+            //     this.speed -= 1;
+            //     setSpeed();
+            //  }
         }
     }
 
@@ -207,27 +217,28 @@ var pizzaUI = function(){
         let toppingQuantity = 1; //This tracks the total amount of one topping
         let topping = ""; //This is the topping being tracked rn
         let currTopping = ""; //This is the topping that is at the current address in the currentToppings array.
-        for (var changeBack = 1; changeBack<9;changeBack++){
-            //Reverts all divs back to empty so that we don't have leftovers from the last round.
-            $('#ToppingName'+changeBack.toString()).text("");
-        }
+        // for (var changeBack = 1; changeBack<9;changeBack++){
+        //     //Reverts all divs back to empty so that we don't have leftovers from the last round.
+        //     $('#ToppingName'+changeBack.toString()).text("");
+        // }
+        let str = "\nScore: "+game.totalScore+"\n";
         for (var i = 0; i<game.currentToppings.length; i++){
             currTopping = game.currentToppings[i];
             if (currTopping!=topping){
                 if (topping !== ""){
                     //This handles putting the topping into the scorebord on the div
-                    $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
-                    toppingNumber+=1;
+                    // $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
+                    str+=topping+": "+toppingQuantity.toString()+"\n";
                 }
                 topping = currTopping;
-                toppingQuantity = 1;
             }
             else{
                 toppingQuantity +=1;
             }
         }
+        str+=topping+": "+toppingQuantity.toString()+"\n";
         //Next one is the last topping. If there is only one topping, this will be the only one to be filled
-        $('#ToppingName'+toppingNumber.toString()).text(topping+": "+toppingQuantity.toString());
+        $('#scoreboard').text(str);
         $('#Score').text("Score: "+game.totalScore);
     }
     this.waiting = function(){
@@ -247,6 +258,7 @@ var pizzaUI = function(){
         if (game.lives == 0){
             console.log("you lose");
             game.lives -=1;
+            // this.stop();
         }
         else if (($('#maingame').width()  < game.options.currentPizzaPosition)&&(flag == false)) {
             flag = true;

@@ -1,33 +1,38 @@
 #onion{
-    background-image: url("../images/onion.png");
+    background-image: url("../images/onionbin.png");
+    background-color: darkmagenta;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #olive{
-    background-image: url("../images/fullolive.png");
+    background-image: url("../images/olivebin.png");
+    background-color: olive;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #sauce{
-    background-image: url("../images/sauce.png");
-    background-size: contain;
+    background-image: url("../images/saucebin.png");
+    background-color: #770a04;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #cheese{
-    background-image: url("../images/cheese.png");
+    background-image: url("../images/cheesebin.png");
+    background-color: #e8aa1b;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #mushroom{
-    background-image: url("../images/mushroom.png");
+    background-image: url("../images/mushroombin.png");
+    background-color: #9e7965;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -36,17 +41,19 @@
 
 
 #basil{
-    background-image: url("../images/basil.png");
+    background-image: url("../images/basilbin.png");
+    background-color: #023d02;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #pepperoni{
-    background-image: url("../images/pepperoni.png");
+    background-image: url("../images/pepperonibin.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: #6b0a05;
 }
 
 #pizza{
@@ -61,6 +68,17 @@
     left: -700px;
     z-index: 2;
 }
+.lives{
+    float:right;
+    margin-right:35px;
+    background-image: url("../images/lives.png");
+    background-repeat: no-repeat;
+    background-position:right;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+}
 .noselect { 
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
@@ -71,6 +89,7 @@
     }
 .toppingbar{
     background-color: gray; 
+    background-image: url("../images/toptexture.jpg");
     border-style: solid;
     border-width: 0.5px;
     height: 14%;
@@ -83,8 +102,26 @@
     border-width: 0.5px;
     border-top: 0;
 }
+
+textarea {
+    background: transparent;
+    color: black;
+    resize: none;
+    border: 0 none;
+    top: 20%;
+    width: 200px;
+    font-size: 1.2em;
+    outline: none;
+    height: 100%;
+    position: absolute;
+  }
 #scoreboard{
+    overflow:auto;
     position: relative;
+    white-space:pre-wrap;
+    line-height: 1.25;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4vw;
     /* background-color: white; */
     background-image: url("../images/sign.jpg");
     background-size: contain;
@@ -109,21 +146,7 @@
     z-index: 2;
 
 }
-.binmushroom{
-    background-color: #9e7965;
-}
-.binpepperoni{
-    background-color: #6b0a05;
-}
-.bincheese{
-    background-color: #e8aa1b;
-}
-.binsauce{
-    background-color: #770a04;
-}
-.binbasil{
-    background-color: #023d02;
-}
+
 #topping{
     position: relative;
     background-color: black;
@@ -143,6 +166,7 @@
 
 #maingame{
     background-image: url("../images/conveyorspeed10.gif");
+    background-color: gray;
     background-size: cover;
     background-repeat: repeat;
     background-position: center center;
@@ -158,7 +182,7 @@
 }
 
 #background{
-    width: 95vw;
+    width: 100vw;
     height: 90vh;
     background-image: url("../images/background.jpg");
     background-position: 0 -100px;
