@@ -1,30 +1,220 @@
-#bottomtopping{
-    background-color: palevioletred;
-    height: 20%;
+#onion{
+    background-image: url("../images/onionbin.png");
+    background-color: darkmagenta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-#toptopping{
-    background-color: lightcoral;
-    height: 20%;
+#olive{
+    background-image: url("../images/olivebin.png");
+    background-color: olive;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sauce{
+    background-image: url("../images/saucebin.png");
+    background-color: #770a04;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#cheese{
+    background-image: url("../images/cheesebin.png");
+    background-color: #e8aa1b;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#mushroom{
+    background-image: url("../images/mushroombin.png");
+    background-color: #9e7965;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+
+#basil{
+    background-image: url("../images/basilbin.png");
+    background-color: #023d02;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#pepperoni{
+    background-image: url("../images/pepperonibin.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #6b0a05;
+}
+
+#pizza{
+    position: relative;
+    background-image: url("../images/pizza.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 25%;
+    height: 100%;
+    top: 0%;
+    left: -700px;
+    z-index: 2;
+}
+.lives{
+    float:right;
+    margin-right:35px;
+    background-image: url("../images/lives.png");
+    background-repeat: no-repeat;
+    background-position:right;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+}
+.noselect { 
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    }
+.toppingbar{
+    background-color: gray; 
+    background-image: url("../images/toptexture.jpg");
+    border-style: solid;
+    border-width: 0.5px;
+    height: 14%;
+    overflow: hidden;
+}
+.toppingbarlip{
+    background-color: #543B39;
+    height: 3%;
+    border-style: solid;
+    border-width: 0.5px;
+    border-top: 0;
+}
+
+textarea {
+    background: transparent;
+    color: black;
+    resize: none;
+    border: 0 none;
+    top: 20%;
+    width: 200px;
+    font-size: 1.2em;
+    outline: none;
+    height: 100%;
+    position: absolute;
+  }
+#scoreboard{
+    overflow:auto;
+    position: relative;
+    white-space: pre-wrap;
+    line-height: 1.25;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4vw;
+    /* background-color: white; */
+    background-image: url("../images/sign.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 1%;
+    padding-left: 2%;
+    top: 5%;
+    height: 70%;
+    width: 25%;
+    top: 0%;
+    left: 70%;
+}
+
+.toppingdiv{
+    height: 90%;
+    width: 12.5%;
+    margin: 5px;
+    float: left;
+    border-style: solid;
+    border-width: 0.5px;
+    z-index: 2;
+
+}
+
+#topping{
+    position: relative;
+    background-color: black;
+    height: 20px;
+    width: 20px;
+    z-index: 3;
+    
+}
+.topping{
+    position: absolute;
+    /* background-color: black; */
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    
 }
 
 #maingame{
-    background-color: palegreen;
+    background-image: url("../images/conveyorspeed10.gif");
+    background-color: gray;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center center;
     height: 40%;
-}
-
-#bottom{
-    background-color: palegoldenrod;
-    height: 15%;
+    overflow: hidden;
+    z-index: 2;
+    /* margin-left: 0; */
 }
 
 #top{
-    background-color: blueviolet;
-    height: 15%;
+    /* background-color: blueviolet; */
+    height: 50%;
 }
 
 #background{
-    width: 95vw;
-    height: 45vw;
-    background-color: rosybrown;
+    width: 100vw;
+    height: 90vh;
+    background-image: url("../images/background.jpg");
+    background-position: 0 -100px;
+    background-size: contain;
+}
+#startscreen{
+    background-image: url("../images/startscreen.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+a.button1{
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    font-size: 24pt;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+a.button1:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    cursor: pointer;
+}
+a.playbutton{
+    margin-left: 45%;
+    margin-top: 22.5%;
 }
